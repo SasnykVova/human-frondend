@@ -1,0 +1,49 @@
+.navbar {
+    background-color: #FFFFFF;
+    color: #B2B2B2;
+}
+
+.menu {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Cera Pro';
+    padding: 10px 0 0 37px;
+    color: #333333;
+
+    &__itemLink {
+        color: inherit;
+        padding: 32px;
+        width: 236px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.menu__itemLink {
+    color: inherit;
+    padding: 32px;
+    width: 236px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.menu__itemLink:nth-child(1) {}
+
+/*=====================*/
+.recruitment {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Cera Pro';
+    padding: 30px 0 0 37px;
+    color: #333333;
+}
+
+.organization {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Cera Pro';
+    padding: 30px 0 0 37px;
+    color: #333333;
+}

@@ -1,0 +1,118 @@
+.jobs {
+    background-color: #F5F6FA;
+    padding: 20px 30px 0px 30px;
+    height: 100vh;
+
+    &__filterBlock {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 0 34px 0;
+    }
+
+    &__title {}
+    &__text {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.88rem;
+        color: #333333;
+    }
+    &__filterBlock {
+        font-size: 14px;
+        font-weight: 500;
+        color:#8F8F8F;
+        display: flex;
+        gap: 30px;
+    }
+    &__statusBlock {
+        padding: 0 0 8px 0;
+        display: flex;
+        gap: 34px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.2rem;
+        color: #1A1D1F;
+    }
+    &__line {
+        width: 100%;
+        height: 1px;
+        background-color: #C4C4C4;
+        margin: 0 0 30px 0;
+    }
+}
+/*===========*/
+.itemBlock {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    &__newVacancy {
+        cursor: pointer;
+        display: flex;
+        gap: 2px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 256px;
+        height: 270px;
+        border: 1px dashed #8F8F8F;
+        border-radius: 10px;
+    }
+    &__newVacancyBtnAdd {
+        stroke: #38CB89;
+    }
+    &__newVacancyText {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.414rem;
+        color: #38CB89;
+    }
+}
+.createJobModal {
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1);
+    transition: 0.5s all;
+
+    &__content {
+        position: relative;
+        padding: 15px;
+        width: 500px;
+        height: 600px;
+        background-color: #fff;
+        border-radius: 10px 10px 10px 10px;
+    }
+    &__closeBtn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+    }
+    &__form {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__btn {
+        width: 100px;
+        height: 30px;
+        background: #38CB89;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        border-radius: 5px;
+    }
+}
+input {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #8F8F8F;
+    border-radius: 2px;
+}

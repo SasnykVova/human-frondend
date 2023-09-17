@@ -1,0 +1,125 @@
+.candidates {
+    background-color: #F0F0F0;
+    height: 800px;
+
+    &__wrapper {
+        padding: 30px 30px 0 30px;
+    }
+
+    &__titleBlock {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #333333;
+    }
+
+    &__filterBlock {}
+
+    &__btn {
+        width: 101px;
+        height: 42px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        background-color: #FFFFFF;
+        border-radius: 6px;
+        border: 1px solid #B2B2B2;
+    }
+
+    &__btnText {
+        font-size: 16px;
+        color: #B2B2B2;
+    }
+
+    &__numberBlock {
+        padding-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &__numberTitle {
+        font-size: 20px;
+        color: #6F767E;
+    }
+
+    &__number {
+        font-size: 16px;
+        padding: 6px;
+        border-radius: 6px;
+        background-color: #D7F5E7;
+    }
+}
+
+.filterParametersBlock {
+    margin-bottom: 19px;
+    height: 52px;
+    border-radius: 10px;
+
+    &__list {
+        padding: 0 0 0 55px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #FFFFFF;
+    }
+
+    &__item {
+        flex: 0 1 196px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    &__itemTitle {
+        color: #6F767E;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .candidates {
+        &__wrapper {
+            padding: 15px 15px 0 15px;
+        }
+    }
+
+    .filterParametersBlock {
+        margin-bottom: 19px;
+        height: 250px;
+        width: 100%;
+        border-radius: 10px;
+        display: flex;
+        gap: 5px;
+
+        &__list {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__item {
+            flex: 0 1 196px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &__itemTitle {
+            text-align: center;
+        }
+    }
+
+    .candidateBlock {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
