@@ -6,12 +6,14 @@ import avatar from '../../assets/icon/search/Group 6.png';
 import logoBack from '../../assets/icon/search/logoBack.png';
 import {ReactComponent as NeedHelp } from '../../assets/icon/search/NeedHelp .svg';
 import {ReactComponent as Bing } from '../../assets/icon/search/bing.svg';
+import MyButton from '../myComponents/button/MyButton';
 
 
 
 
 
-const Header = () => {
+const Header = (props) => {
+    console.log(props)
     return (
         <div className={s.header}>
             <div className={s.header__wrapper}>
@@ -29,7 +31,11 @@ const Header = () => {
                     <div className={s.header__userBlock}>
                         <div><NeedHelp width="24" height="24"/></div>
                         <div><Bing width="24" height="24"/></div>
-                        <div><img src={avatar} alt='avatar'/></div>
+                        {props.isAuth 
+                        ? 
+                        <div><img src={avatar} alt='avatar'/></div> 
+                        : 
+                        <MyButton textBTN={"Log in"}/>}
                     </div>
                 </div>
             </div>

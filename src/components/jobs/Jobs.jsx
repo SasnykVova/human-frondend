@@ -16,9 +16,9 @@ const jobsData = [
 
 
 const Jobs = (props) => {
-    // const changeValue = (text) => {
-    //     props.newPostTextAC(text);
-    // }
+    const changeValue = (text) => {
+        props.newPostTextAC(text);
+    }
     const [createNewVacancy, setCreateNewVacancy] = useState(false);
     return (
         <div className={s.jobs}>
@@ -58,7 +58,7 @@ const Jobs = (props) => {
                     <text className={s.itemBlock__newVacancyText}>Create New Job</text>
                 </div>
             </div>
-            {/* <input onChange={(e) => changeValue(e.target.value)} value={props.newPostText}></input> */}
+            <input onChange={(e) => changeValue(e.target.value)} value={props.newPostText}></input>
         </div>
     );
 }

@@ -2,16 +2,16 @@ import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Candidates from './components/candidates/Candidates';
-import Header from './components/header/Header';
 import { Route, Routes } from 'react-router';
 import Message from './components/message/Message';
 import JobsContainer from './components/jobs/JobsContainer';
+import HeaderContainer from './components/header/HeaderContainer';
 
 
 function App() {
   return (
     <div className='app-wrapper'>
-      <Header/>
+      <HeaderContainer/>
       <Navbar/>
       <div className='main-content'>
         <Routes>
