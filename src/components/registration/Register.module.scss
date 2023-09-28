@@ -1,17 +1,4 @@
-.login {
-
-    &__line {
-        width: 100%;
-        height: 1px;
-        background-color: #8F8F8F;
-    }
-    &__wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-    }
+.register {
     &__title {
         padding: 20px 0px;
         font-size: 30px;
@@ -21,10 +8,26 @@
         text-transform: uppercase;
         text-align: center;
     }
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     &__form {
         display: flex;
         flex-direction: column;
         gap: 15px;
+    }
+    &__labelInput {
+        display: flex;
+        gap: 2px;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &__label {
+        font-size: 18px;
+        color: #000000cc;
     }
     &__input {
         color: inherit;
@@ -60,7 +63,7 @@
         gap: 20px;
     }
     &__labelCB {
-        color: grey;
+        color: #8F8F8F;
     }
     &__btn {
         width: 390px;
@@ -74,7 +77,6 @@
         line-height: 1.2;
     }
     &__registration {
-        font-size: 16px;
         padding: 20px 0 0 0;
         text-align: center;
         color: red;

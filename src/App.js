@@ -6,6 +6,8 @@ import { Route, Routes } from 'react-router';
 import Message from './components/message/Message';
 import JobsContainer from './components/jobs/JobsContainer';
 import HeaderContainer from './components/header/HeaderContainer';
+import Login from './components/login/Login';
+import RegisterContainer from './components/registration/RegisterContainer';
 
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
       <Navbar/>
       <div className='main-content'>
         <Routes>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/login/registration' element={<RegisterContainer/>}/>
           <Route path='/candidates' element={<Candidates/>}/>
           <Route path='/message' element={<Message/>}/>
           <Route path='/jobs' element={<JobsContainer/>}/>

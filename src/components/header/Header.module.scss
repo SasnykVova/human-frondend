@@ -60,7 +60,7 @@
     &__blockWrapper {
         display: flex;
         gap: 50px;
-        padding: 0 30px 0 0;
+        padding: 0 15px 0 0;
     }
 
     &__searchingForm {
@@ -86,9 +86,23 @@
 
     &__userBlock {
         display: flex;
-        gap: 5px;
+        gap: 15px;
         align-items: center;
         justify-content: space-between;
+    }
+    &__loginBtn {
+        width: 30px;
+        height: 15px;
+        color: white;
+        background-color: #377DFF;
+        border-radius: 10px;
+    }
+    &__loginBtn {
+        width: 30px;
+        height: 15px;
+        color: white;
+        background-color: #377DFF;
+        border-radius: 10px;
     }
 }
 

@@ -18,7 +18,7 @@ const Header = (props) => {
         <div className={s.header}>
             <div className={s.header__wrapper}>
                 <div className={s.header__logo}>
-                    <NavLink className={s.header__logoLink}>
+                    <NavLink to={"/"} className={s.header__logoLink}>
                         <div className={s.header__logoWrapperCreate}><img className={s.header__logoCreate} src={logoBack} alt='Logo'/></div>
                         <div className={s.header__logoText}>Human R.</div>
                     </NavLink>
@@ -29,13 +29,13 @@ const Header = (props) => {
                         <button className={s.header__searchingBtn}><img className={s.header__searchingImg} src={search} alt='search'/></button>
                     </form>
                     <div className={s.header__userBlock}>
-                        <div><NeedHelp width="24" height="24"/></div>
-                        <div><Bing width="24" height="24"/></div>
+                        <div className={s.header__hint}><NeedHelp width="24" height="24"/></div>
+                        <div className={s.header__bing}><Bing width="24" height="24"/></div>
                         {props.isAuth 
                         ? 
-                        <div><img src={avatar} alt='avatar'/></div> 
+                        <div className={s.header__avatarWrapper}><img className={s.header__avatar} src={avatar} alt='avatar'/></div> 
                         : 
-                        <MyButton textBTN={"Log in"}/>}
+                        <NavLink to={"/login"}><MyButton className={s.header__loginBtn} textBTN={"Log in"}/></NavLink>}
                     </div>
                 </div>
             </div>

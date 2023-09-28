@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit"
 import { combineReducers } from "redux"
 import jobstoolkitReducer from "./jobstoolkitReducer";
 import authtoolkitReducer from "./authtoolkitReducer";
+import registertoolkitReducer from "./registertoolkitReducer";
 
 
 const rootReducer = combineReducers({
     jobsPage: jobstoolkitReducer,
     auth: authtoolkitReducer,
+    registerPage: registertoolkitReducer,
 })
 
 
