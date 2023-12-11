@@ -1,9 +1,14 @@
 .login {
+    font-family: 'Cera Pro';
 
     &__line {
         width: 100%;
         height: 1px;
         background-color: #8F8F8F;
+    }
+    &__loading {
+        font-size: 30px;
+        font-weight: 900;
     }
     &__wrapper {
         display: flex;
@@ -63,6 +68,10 @@
         color: grey;
     }
     &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Cera Pro';
         width: 390px;
         height: 62px;
         border-radius: 5px;

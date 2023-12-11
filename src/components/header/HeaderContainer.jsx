@@ -4,9 +4,7 @@ import { isAuthAC } from "../../toolkitRedux/authtoolkitReducer";
 import Header from "./Header";
 
 const mapStateToProps = (state) => {
-    return {
-        isAuth: state.auth.isAuth,
-    }
+    return
 }
 
 export const HeaderContainer = () => {

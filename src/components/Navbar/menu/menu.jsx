@@ -37,13 +37,13 @@ const Menu = () => {
             <h3 className={s.recruitment}>Recruitment</h3>
             <nav id="sidebar-recruitment" className='recruitment__nav nav'>
                 <ul className='recruitment__list list'>
-                    <NavLink to={'/jobs'} className='recruitment__itemLink itemLink'>
+                    <NavLink to={'/jobs/all'} className='recruitment__itemLink itemLink'>
                         <Jobs className='menu__icon icon' width="24" height="24" />
-                        <li className='recruitment__item item'>Jobs</li>
+                        <li className='recruitment__item item'>Vacancies</li>
                     </NavLink>
                     <NavLink to={'/candidates'} className='recruitment__itemLink itemLink'>
                         <DashboardRec className='menu__icon icon' width="24" height="24" />
-                        <li className='recruitment__item item'>Dashboard</li>
+                        <li className='recruitment__item item'>Candidates</li>
                     </NavLink>
                     <NavLink to={'/referrals'} className='recruitment__itemLink itemLink'>
                         <MyRef className='menu__icon icon' width="24" height="24" />
@@ -58,7 +58,7 @@ const Menu = () => {
             <h3 className={s.organization}>ORGANIZATION</h3>
             <nav id="sidebar-organization" className='organization__nav nav'>
                 <ul className='organization__list list'>
-                    <NavLink to={'/employee'} className='organization__itemLink itemLink'>
+                    <NavLink to={'/employees'} className='organization__itemLink itemLink'>
                         <Employee className='menu__icon icon' width="24" height="24" /><li className='organization__item item'>Employee</li>
                     </NavLink>
                     <NavLink to={'/structure'} className='organization__itemLink itemLink'>

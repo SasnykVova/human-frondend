@@ -2,10 +2,16 @@ import React from 'react';
 import s from './Register.module.scss';
 
 const Register = (props) => {
+    console.log(props)
     
     
     const handlesubmit = (e) => {
         e.preventDefault();
+        props.getRegister(props.name, props.surname, props.email, props.password)
+        props.newNameTextAC('')
+        props.newSurnameTextAC('')
+        props.newEmailTextAC('')
+        props.newPasswordTextAC('')
     }
 
     return (

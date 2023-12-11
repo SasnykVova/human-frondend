@@ -1,4 +1,6 @@
 import { createAction, createReducer } from "@reduxjs/toolkit"
+import $api from "../http";
+// import {Navigate} from "react-router-dom";
 
 const initialState = {
     name: "",
@@ -28,8 +30,21 @@ export default createReducer( initialState, {
     },
 })
 
-// export const getRegister = (name, surname, email, password) => {
-//     return async (dispatch) => {
-//         let data = await 
-//     }
-// }
+export const getRegister = ( name, surname, email, password ) => { 
+    return async () => {
+            await $api.post('/registration', {name, surname, email, password}
+        )
+        // .then( () => {
+        //     if(response.data === 'token') {
+        //     return <Navigate to={'/login'}
+        //     />
+        //     } else if(response.data === 'message') {
+        //         return alert("Email already used")
+        //     }
+        // }
+        // )
+        }
+
+    }
+
+

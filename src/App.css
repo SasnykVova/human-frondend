@@ -61,11 +61,15 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 .app-wrapper {
 	font-family: 'Cera Pro';
 	font-weight: 400;
-	padding: 0 15px;
+	padding: 0 0 0 15px;
 	display: grid;
 	grid-template-areas: 
 	"h h"
 	"n m";
 	grid-template-columns: auto 1fr;
+}
+.login-block {
+	font-family: 'Cera Pro';
+	font-weight: 700;
 }
 

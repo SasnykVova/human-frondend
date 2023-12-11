@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Register from './Register';
-import { newNameTextAC, newSurnameTextAC, newEmailTextAC ,newPasswordTextAC } from '../../toolkitRedux/registertoolkitReducer';
+import { newNameTextAC, newSurnameTextAC, newEmailTextAC ,newPasswordTextAC, getRegister } from '../../toolkitRedux/registertoolkitReducer';
 
 const mapStateToProps = (state) => {
     return {
@@ -21,4 +21,4 @@ export const RegisterContainer = (props) => {
 }
 
 export default connect ( mapStateToProps, { 
-    newNameTextAC, newSurnameTextAC, newEmailTextAC ,newPasswordTextAC })(Register);
+    newNameTextAC, newSurnameTextAC, newEmailTextAC ,newPasswordTextAC, getRegister, })(Register);

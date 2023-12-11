@@ -3,6 +3,8 @@ import s from './Candidates.module.scss';
 import { ReactComponent as Filter } from '../../assets/icon/candidates/filterIco.svg';
 import { ReactComponent as Arrow } from '../../assets/icon/candidates/arrow.svg';
 import Candidate from './candidate/Candidate';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router';
 
 const FilterParametersBlock = (props) => {
     return (
@@ -40,10 +42,13 @@ const Candidates = () => {
         { id: "5", candidateName: 'Albert Flores', rating: '5.0', stage: 'Design Chalange', date: '06 March, 2022', owner: 'Bessie Cooper', },
         { id: "6", candidateName: 'Volodymyr Sasnyk', rating: '5.0', stage: 'Applied', date: '06 March, 2022', owner: 'Vasyl Malion', },
     ]);
-
-
+    const state = useSelector(state => state.auth)
     return (
         <div className={s.candidates}>
+            {state.token === null 
+            ?
+            <Navigate to={'/login'}/>
+            :
             <div className={s.candidates__wrapper}>
                 <div className={s.candidates__titleBlock}>
                     <h2 className={s.candidates__title}>Candidates</h2>
@@ -61,10 +66,11 @@ const Candidates = () => {
                 <div className={s.filterParametersBlock}>
                     <FilterParametersBlock />
                     <div className={s.candidateBlock}>
-                        {candidates.map(c => <Candidate key={c.id} name={c.candidateName} rating={c.rating} stage={c.stage} date={c.date} owner={c.owner} />)}
+                        {candidates.map(c => <Candidate key={c.id} setCandidate={setCandidate} name={c.candidateName} rating={c.rating} stage={c.stage} date={c.date} owner={c.owner} />)}
                     </div>
                 </div>
             </div>
+}
         </div>
     );
 }

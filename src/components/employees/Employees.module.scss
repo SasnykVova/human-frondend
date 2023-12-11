@@ -1,0 +1,76 @@
+.employeesPage {
+    background-color: #F5F6FA;
+    min-height: 100vh;
+    .modalBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .wrapper {
+        padding: 20px 30px 0px 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .titleBlockWrapper {
+                display: flex;
+                justify-content: space-between;
+                
+
+            .titleBlock {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+    
+                .title {
+                    font-size: 24px;
+                    font-weight: 700;
+                    line-height: 1.88rem;
+                    color: #333333;
+                }
+    
+                .totalNumber {
+                    font-size: 20px;
+                    display: flex;
+                    gap: 10px;
+                    color: #6F767E;
+
+                    .totalTitle {}
+                    .totalNumber {
+                        color: #000;
+                        font-weight: 700;
+                    }
+                }
+            }
+            .btnWrapper {
+                display: flex;
+                align-items: center;
+
+                .addEmpBtn {}
+            }
+        }
+        .employeesBlock {
+            .criteriaBlock {
+                padding: 0 0 0 15px;
+                display: flex;
+                background: #FFFFFF;
+            }
+        }
+        .paginationWrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+    }
+
+    .employeesBlock {}
+}
+.addUserSucModal {
+
+    .addUserSucModalText {
+        text-align: center;
+        font-size: 20px;
+        font-weight: normal;
+    }
+}

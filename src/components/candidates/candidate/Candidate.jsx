@@ -21,7 +21,7 @@ const Stage = (props) => {
         stageNum: '',
     });
 
-    const getStage = () => {
+    const getStage = (props) => {
         switch(props.stage) {
             case 'Shortlist':
                 return setStage({ title: 'Shortlist',color: 'secondary', stageNum: '1'});
@@ -40,8 +40,8 @@ const Stage = (props) => {
         }
     }
     useEffect(() => {
-        getStage()
-    },[])
+        getStage(props)
+    }, [props])
     return (
         <div>
             <div className={s.candidate__stage}>{stage.title}</div>

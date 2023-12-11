@@ -34,7 +34,7 @@ const ShortMenu = () => {
             <div className={s.recruitment}></div>
             <nav id="sidebar-shortMenuRecruitment" className='shortMenuRecruitment__nav navshortMenu'>
                 <ul className='shortMenuRecruitment__list listShortMenu'>
-                    <NavLink to={'/jobs'} className='shortMenuRecruitment__itemLink itemLinkShortMenu'>
+                    <NavLink to={'/jobs/all'} className='shortMenuRecruitment__itemLink itemLinkShortMenu'>
                         <Jobs className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                     <NavLink to={'/candidates'} className='shortMenuRecruitment__itemLink itemLinkShortMenu'>
@@ -51,7 +51,7 @@ const ShortMenu = () => {
             <div className={s.organization}></div>
             <nav id="sidebar-shortMenuOrganization" className='shortMenuOrganization__nav navshortMenu'>
                 <ul className='shortMenuOrganization__list listShortMenu'>
-                    <NavLink to={'/employee'} className='shortMenuOrganization__itemLink itemLinkShortMenu'>
+                    <NavLink to={'/employees'} className='shortMenuOrganization__itemLink itemLinkShortMenu'>
                         <Employee className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                     <NavLink to={'/structure'} className='shortMenuOrganization__itemLink itemLinkShortMenu'>
