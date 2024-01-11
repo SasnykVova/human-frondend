@@ -1,0 +1,32 @@
+input[type='search']::-webkit-search-decoration, 
+input[type='search']::-webkit-search-cancel-button, 
+input[type='search']::-webkit-search-results-button, 
+input[type='search']::-webkit-search-results-decoration {
+	display: none;
+}
+.searchWrapper {
+    padding: 0 0 25px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .label {
+        font-weight: 300;
+        font-size: 1.2rem;
+    }
+    .input {
+        font-size: 1.3rem;
+        font-weight: 300;
+        width: 250px;
+        height: 50px;
+        padding: 0 0 0 15px;
+        border: none;
+        background: white;
+        border-radius: 5px;
+        &:focus {
+            transition: all ease-in-out 0.2s;
+            border: 1px solid #377DFF;
+            outline: 0;
+            box-shadow: 0 0 0 1px #377DFF;
+        }
+    }
+}

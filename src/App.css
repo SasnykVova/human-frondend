@@ -57,6 +57,15 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
     font-weight: 700;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Cera Pro';
+    src: local('Cera Pro Light'), local('CeraPro-Light'),
+        url('../src/assets/fonts/CeraPro-Light.woff') format('woff'),
+        url('../src/assets/fonts/CeraPro-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
 
 .app-wrapper {
 	font-family: 'Cera Pro';
@@ -67,6 +76,12 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 	"h h"
 	"n m";
 	grid-template-columns: auto 1fr;
+}
+.header {
+}
+.navBar {
+}
+.main-content {
 }
 .login-block {
 	font-family: 'Cera Pro';

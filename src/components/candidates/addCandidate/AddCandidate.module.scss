@@ -1,0 +1,41 @@
+.addCandidate {
+  padding: 15px;
+  background-color: #f5f6fa;
+  min-height: 100vh;
+
+  .wrapper {
+    padding: 20px 30px 50px 30px;
+
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.88rem;
+      color: #333333;
+      padding-bottom: 3rem;
+    }
+    .personalInfoBlock {
+        padding-bottom: 2rem;
+      .subTitle {}
+      .twoInput {
+        display: flex;
+        gap: 2rem;
+        .input {
+        }
+      }
+    }
+    .contactInfoBlock {
+        padding-bottom: 2rem;
+    }
+  }
+}
+/*Сommon styles*/
+.twoInput {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+.subTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-bottom: 1.5rem;
+  }

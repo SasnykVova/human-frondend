@@ -1,0 +1,10 @@
+.candidates {
+    .wrapper {
+        display: flex;
+        gap: 1.5rem;
+}
+}
+.candidatesUpdateTask {
+    opacity: 50%;
+    pointer-events: none;
+}

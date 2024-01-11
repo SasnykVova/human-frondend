@@ -1,0 +1,27 @@
+.headerBlock {
+    padding: 20px 0 0 0;
+    background-color: #F5F6FA;
+
+    .titleBtnBlock {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 0 20px 0;
+
+        .title {
+            .text {
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 1.88rem;
+                color: #333333;
+            }
+        }
+
+        .filterBlock {}
+    }
+
+    .searchBlock {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

@@ -1,0 +1,29 @@
+.details {
+    .wrapper {
+        .personalInfo {
+            .title {
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+
+            .infoBlock {
+                margin: 15px 0 ;
+                padding: 10px;
+                width: 400px;
+                background-color: white;
+
+                .item {
+                    padding: 5px;
+                    display: flex;
+                    gap: 5px;
+                    .key {
+                        color: grey;
+                    }
+                    .value {
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+}

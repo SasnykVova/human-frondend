@@ -18,8 +18,8 @@ const SimpleModal = (props) => {
                                 <Loader />
                                 :
                                 <div className={s.wrapperBtn}>
-                                    <MyButton onClick={props.onClickBtn} className={s.createJobModal__btn} bg={'#3ed65d'} fontSize={props.fontSize} title={props.titleButton} />
-                                    <MyButton onClick={props.onClickBtn2} className={s.createJobModal__btn} bg={'#c72626'} fontSize={props.fontSize} title={props.titleButton2} />
+                                    <MyButton onClick={props.onClickBtn} className={s.createJobModal__btn} bg={'#3ed65d'} bor={'#3ed65d'} fontSize={props.fontSize} title={props.titleButton} />
+                                    <MyButton onClick={props.onClickBtn2} className={s.createJobModal__btn} bg={'#c72626'} bor={'#c72626'} fontSize={props.fontSize} title={props.titleButton2} />
                                 </div>
                             }
                         </div>

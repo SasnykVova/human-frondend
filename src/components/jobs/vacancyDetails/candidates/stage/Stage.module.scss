@@ -1,0 +1,37 @@
+.stage {
+    width: 188px;
+    height: 468px;
+    background: white;
+    padding: 12px;
+    border-radius: 0.5rem;
+
+    .header {
+    margin-bottom: 2rem;
+        .decorLine {
+            height: 0.375rem;
+            background: #FFA600;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        .infoBlock {
+            background: #FAFBFC;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border: 1px solid #CCCCCC;
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+            .title {}
+            .taskCount {
+                padding: 6px 8px;
+                background: #EFEFEF;
+                border-radius: 0.375rem;
+            }
+        }
+    }
+    .task {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

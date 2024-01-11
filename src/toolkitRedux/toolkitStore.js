@@ -4,6 +4,7 @@ import authreducer from './reducer/authSlice';
 import registertoolkitReducer from "./registertoolkitReducer";
 import employessReducer from './reducer/employeesSlice';
 import jobsSlice from "./reducer/jobsSlice";
+import candidatesSlice from "./reducer/candidatesSlice";
 
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     auth: authreducer,
     employeesPage: employessReducer,
     registerPage: registertoolkitReducer,
+    candidatesPage: candidatesSlice,
 })
 
 const store = configureStore({

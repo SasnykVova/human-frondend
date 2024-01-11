@@ -2,8 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import $api from "../../http/index";
 
 
+    const userInfoString = localStorage.getItem('userInfo')
+    const userInfoData = JSON.parse(userInfoString)
+
 const initialState = {
     token: localStorage.getItem('token'),
+    userInfoData: userInfoData,
     getLogin: {
         loading: false,
         success: false,
@@ -27,9 +31,9 @@ export const getLogin = createAsyncThunk(
     async ({ email, password }, thunkAPI) => {
         try {
             let response = await $api.post('/login', {email, password})
-            localStorage.setItem('surname', response.data.userInfo.surname)
-            localStorage.setItem('name', response.data.userInfo.name)
-            localStorage.setItem('id', response.data.userInfo._id)
+            console.log(response.data.userInfo)
+            const userInfoStr = JSON.stringify(response.data.userInfo)
+            localStorage.setItem('userInfo', userInfoStr)
             localStorage.setItem('token', response.data.token)
             return thunkAPI.fulfillWithValue(response.data.token)
         } catch (e) {
@@ -98,6 +102,9 @@ export const authSlice = createSlice({
         setId(state, action) {
             state.id = action.payload
         },
+        setLoginSuccess(state) {
+            state.getLogin.success = false
+        }
         },
         extraReducers: {
             [getLogin.pending.type]: (state) => {

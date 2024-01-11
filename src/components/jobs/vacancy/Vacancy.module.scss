@@ -16,6 +16,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .status {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
     }
     &__avatarWrapper {
         display: flex;
@@ -71,10 +76,13 @@
     }
     /*====*/
     &__newCandidates {
+        font-weight: 700;
         padding: 12px 0 0 0;
         display: flex;
-        justify-content: space-between;
+        gap: 10px;
+        justify-content: left;
         align-items: center;
+        color: black;
     }
     &__newCandidatesAvatar {}
     &__totalCandidates {

@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     position: absolute;
-    top: 12px;
+    top: 8px;
     left: 15px;
     cursor: pointer;
 
@@ -16,7 +16,7 @@
         top: 0;
         width: 25px;
         background-color: black;
-        height: 1px;
+        height: 3px;
     }
 
     &__middleLine {
@@ -34,7 +34,7 @@
         bottom: 0;
         width: 25px;
         background-color: black;
-        height: 1px;
+        height: 2px;
     }
 }
 

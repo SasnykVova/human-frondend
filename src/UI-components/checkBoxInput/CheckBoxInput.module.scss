@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+
+    .label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.2rem;
+        font-weight: 400;
+        font-family: 'PT Sans';
+        cursor: pointer;
+
+        .input {
+            width: 15px;
+            height: 15px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+}

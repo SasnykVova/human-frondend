@@ -1,72 +1,34 @@
-.employeeDetailsPage {
-    padding: 15px;
-        background-color: #F5F6FA;
-        min-height: 100vh;
+.employeeDetails {
+  background-color: #f5f6fa;
+  min-height: 100vh;
 
-    .loaderWrapper {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  .loaderWrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .wrapper {
+    padding: 20px 30px 50px 30px;
+
+    .header {
+      padding: 0 0 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .headerTitle {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.88rem;
+        color: #333333;
+      }
     }
-    .employeeDetailsWrapper {
-        display: flex;
-        justify-content: space-between;
-    .employeeDetails {
-        .personalInfo {
-            padding: 0 0 50px 0;
-
-            .personalInfoTitle {
-                padding: 0 0 10px 0;
-                position: relative;
-                display: inline-block;
-                margin-bottom: 10px;
-                font-size: 24px;
-                font-weight: 500;
-                color: #6F767E;
-
-                &::after {
-                    content: '';
-                    margin: 5px 0 0 0;
-                    position: absolute;
-                    display: block;
-                    width: 100%;
-                    height: 1px;
-                    background-color: #6F767E;
-                }
-            }
-
-            .name {
-                font-size: 20px;
-                font-weight: 700;
-                margin: 0 0 15px 0;
-            }
-
-            .titleInfoBlock {
-                padding: 5px;
-            }
-        }
-
-        .employeeInfo {
-            .employeeInfoTitle {
-                position: relative;
-                display: inline-block;
-                margin-bottom: 10px;
-                font-size: 20px;
-                font-weight: 500;
-                color: #6F767E;
-
-                &::after {
-                    content: '';
-                    margin: 5px 0 0 0;
-                    position: absolute;
-                    display: block;
-                    width: 100%;
-                    height: 1px;
-                    background-color: #6F767E;
-                }
-            }
-        }
+    .main {
+      .mainTitle {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
     }
-}
+  }
 }

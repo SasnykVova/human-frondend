@@ -5,7 +5,7 @@ import $api from "../../http";
 
 const initialState = {
     employeesData: [],
-    limit: 7,
+    limit: 10,
     totalPage: null,
     currentPage: 1,
     isLoading: false,
@@ -74,6 +74,7 @@ export const getOneUser = createAsyncThunk(
         }
     } 
 )
+
 
 export const employeesSlice = createSlice({
     name: 'employees',
@@ -176,11 +177,11 @@ export const employeesSlice = createSlice({
 })
 
 
-export const getUsers = (limit = 5, page = 1) => {
+export const getUsers = (limit = 5, page = 1, filter='') => {
     return async (dispatch) => {
         try {
             dispatch(employeesSlice.actions.getEmployeesDataLoading())
-            let response = await $api.get(`/employees/?limit=${limit}&page=${page}`)
+            let response = await $api.get(`/employees/?limit=${limit}&page=${page}&filter=${filter}`)
             console.log(response)
             dispatch(employeesSlice.actions.setEmployeesData(response.data.users))
             dispatch(employeesSlice.actions.getEmployeesSuccess(response.data.count))
@@ -189,23 +190,6 @@ export const getUsers = (limit = 5, page = 1) => {
         }
     }
 }
-
-// export const addUser = (name, position, birthDate, department, surname, mobileNumber, address, email, role, startDate, gender) => {
-//     return async (dispatch) => {
-//         try {
-//             dispatch(employeesSlice.actions.getAddUserLoading())
-//             let response = await $api.post('/employees/add', {name, position, birthDate, department, surname, mobile: mobileNumber, address, 
-//             email, role, startDate, gender})
-//             dispatch(employeesSlice.actions.getAddUserSuccess())
-//             console.log(response)
-//         } catch (error) {
-//             dispatch(employeesSlice.actions.getAddUserError(error.message))
-//             console.log(error)
-//     }
-// }
-// }
-
-
 
 export const actions = employeesSlice.actions
 export default employeesSlice.reducer;

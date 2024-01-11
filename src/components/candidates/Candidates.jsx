@@ -1,78 +1,176 @@
-import React, { useState } from 'react';
-import s from './Candidates.module.scss';
-import { ReactComponent as Filter } from '../../assets/icon/candidates/filterIco.svg';
-import { ReactComponent as Arrow } from '../../assets/icon/candidates/arrow.svg';
-import Candidate from './candidate/Candidate';
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router';
+import React, { useEffect, useMemo, useState } from "react";
+import s from "./Candidates.module.scss";
+import HeaderBlock from "../../UI-components/headerBlock/HeaderBlock";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  candidatesSlice,
+  deleteCandidate,
+  getCandidates,
+} from "../../toolkitRedux/reducer/candidatesSlice";
+import Criterion from "../employees/criterion/Сriterion";
+import { NavLink, useNavigate } from "react-router-dom";
+import Candidate from "./candidate/Candidate";
+import birthDateSplit from "./../../assets/common/birthDateSplit";
+import { Pagination, Stack } from "@mui/material";
+import LoaderThreeLine from "../../UI-components/loaderThreeLine/LoaderThreeLine";
+import SimpleModal from "../../UI-components/simpleModal/simpleModal";
+import debounce from "../../assets/common/debounce";
+import { useTranslation } from "react-i18next";
 
-const FilterParametersBlock = (props) => {
-    return (
-        <ul className={s.filterParametersBlock__list}>
-            <li className={s.filterParametersBlock__item}>
-                <div className={s.filterParametersBlock__itemTitle}>Candidate Name</div>
-                <Arrow className={s.filterParametersBlock__itemArrow} width='12' height='12' />
-            </li>
-            <li className={s.filterParametersBlock__item}>
-                <div className={s.filterParametersBlock__itemTitle}>Rating</div>
-                <Arrow className={s.filterParametersBlock__itemArrow} width='12' height='12' />
-            </li>
-            <li className={s.filterParametersBlock__item}>
-                <div className={s.filterParametersBlock__itemTitle}>Stages</div>
-                <Arrow className={s.filterParametersBlock__itemArrow} width='12' height='12' />
-            </li>
-            <li className={s.filterParametersBlock__item}>
-                <div className={s.filterParametersBlock__itemTitle}>Applied date</div>
-                <Arrow className={s.filterParametersBlock__itemArrow} width='12' height='12' />
-            </li>
-            <li className={s.filterParametersBlock__item}>
-                <div className={s.filterParametersBlock__itemTitle}>Owner</div>
-                <Arrow className={s.filterParametersBlock__itemArrow} width='12' height='12' />
-            </li>
-        </ul>
-    )
-}
 const Candidates = () => {
 
-    const [candidates, setCandidate] = useState([
-        { id: "1", candidateName: 'Cameron Williamson', rating: '4.7', stage: 'Shortlist', date: '01 March, 2022', owner: 'Annette Black', },
-        { id: "2", candidateName: 'Savannah Nguyen', rating: '2.7', stage: 'Preinterview', date: '03 March, 2022', owner: 'Courtney Henry', },
-        { id: "3", candidateName: 'Darlene Robertson', rating: '0.0', stage: 'Interview', date: '04 March, 2022', owner: 'Arlene McCoy', },
-        { id: "4", candidateName: 'Leslie Alexander', rating: '4.9', stage: 'Test', date: '05 March, 2022', owner: 'Jane Cooper', },
-        { id: "5", candidateName: 'Albert Flores', rating: '5.0', stage: 'Design Chalange', date: '06 March, 2022', owner: 'Bessie Cooper', },
-        { id: "6", candidateName: 'Volodymyr Sasnyk', rating: '5.0', stage: 'Applied', date: '06 March, 2022', owner: 'Vasyl Malion', },
-    ]);
-    const state = useSelector(state => state.auth)
-    return (
-        <div className={s.candidates}>
-            {state.token === null 
-            ?
-            <Navigate to={'/login'}/>
-            :
-            <div className={s.candidates__wrapper}>
-                <div className={s.candidates__titleBlock}>
-                    <h2 className={s.candidates__title}>Candidates</h2>
-                    <div className={s.candidates__filterBlock}>
-                        <button className={s.candidates__btn}>
-                            <Filter className={s.candidates__btnIco} width='24px' height='24px' />
-                            <div className={s.candidates__btnText}>Filter</div>
-                        </button>
-                    </div>
-                </div>
-                <div className={s.candidates__numberBlock}>
-                    <h3 className={s.candidates__numberTitle}>Total Candidates</h3>
-                    <div className={s.candidates__number}>20</div>
-                </div>
-                <div className={s.filterParametersBlock}>
-                    <FilterParametersBlock />
-                    <div className={s.candidateBlock}>
-                        {candidates.map(c => <Candidate key={c.id} setCandidate={setCandidate} name={c.candidateName} rating={c.rating} stage={c.stage} date={c.date} owner={c.owner} />)}
-                    </div>
-                </div>
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const actions = candidatesSlice.actions;
+  const state = useSelector((state) => state.candidatesPage);
+  const navigate = useNavigate();
+
+  const [searchValue, setSearchValue] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  
+
+
+  const criteriaData = [
+    { id: 1, title: t("candidates.candidate"), width: "19%" },
+    { id: 2, title: t("candidates.location"), width: "19%" },
+    { id: 3, title: t("candidates.position"), width: "19%" },
+    { id: 4, title: t("candidates.mobileNumber"), width: "19%" },
+    { id: 5, title: t("candidates.birthdate"), width: "19%" },
+    { id: 6, title: "", width: "5%" },
+  ];
+
+  const [deleteCandidateInfo, setDeleteCandidateInfo] = useState({
+    id: "",
+    name: "",
+    surname: "",
+  });
+
+  const setFilter = (isChecked) => {
+    return dispatch(actions.setOnlyMine(isChecked ? "1" : ""));
+  };
+  const handleClick = (value) => {
+    setIsChecked(value);
+    setFilter(value);
+  };
+
+  const limit = state.getCandidates.limit;
+  const page = state.getCandidates.page;
+  const filter = state.getCandidates.filter;
+  const onlyMine = state.getCandidates.onlyMine;
+
+  useEffect(() => {
+    dispatch(getCandidates({ limit, page, filter, onlyMine }));
+  }, [state.deleteCandidate.success, onlyMine]);
+
+  const makeRequest = useMemo(
+      () =>
+      debounce((searchValue) => {
+          dispatch(getCandidates({limit, page, filter: searchValue, onlyMine}))
+      }, 500),
+      []
+  );
+
+  const handleChange = (event) => {
+      const newSearchTerm = event.target.value;
+      setSearchValue(newSearchTerm);
+      makeRequest(newSearchTerm)
+    };
+
+  return (
+    <>
+      <div className={s.candidates}>
+        <SimpleModal
+          isLoading={state.deleteCandidate.loading}
+          isSuccess={state.deleteCandidate.modalOpen}
+          onClickBtn={() => dispatch(deleteCandidate(deleteCandidateInfo.id))}
+          onClickBtn2={() => dispatch(actions.setDeleteCanModalOpen(false))}
+          width={"300px"}
+          height={"200px"}
+          titleButton={t("candidates.candidateDetails.yes")}
+          titleButton2={t("candidates.candidateDetails.no")}
+        >
+          <div style={{ fontSize: "16px", textAlign: "center" }}>
+          {t("candidates.candidateDetails.deletingDescription")} {deleteCandidateInfo.name}
+            {deleteCandidateInfo.surname} ?
+          </div>
+        </SimpleModal>
+        <div className={s.wrapper}>
+          <HeaderBlock
+            className={s.headerBlock}
+            title={t("candidates.title")}
+            titleBtn={t("candidates.addCandidate")}
+            labelSearchInput={t("candidates.search")}
+            labelCheckBox={t("candidates.onlyMine")}
+            onClickMyButton={() => navigate("/candidates/adding")}
+            isChecked={isChecked}
+            onClickCheckBox={(value) => handleClick(value)}
+            onChangeSearchInput={handleChange}
+            valueSearchInput={searchValue}
+            placeholder={t("candidates.searchPlaceholder")}
+          />
+          <div className={s.candidatesBlock}>
+            <div className={s.criteriaBlock}>
+              {criteriaData.map((c) => (
+                <Criterion key={c.id} width={c.width} title={c.title} />
+              ))}
             </div>
-}
+            <div className={s.candidates}>
+              {state.getCandidates.loading ? (
+                <LoaderThreeLine />
+              ) : (
+                state.getCandidates.candidatesData.map((c) => (
+                  <NavLink
+                    onClick={() => dispatch(actions.setCandidateId(c.id))}
+                    to={`/candidates/${c.id}`}
+                  >
+                    <Candidate
+                      key={c.id}
+                      name={c.name}
+                      surname={c.surname}
+                      location={c.location}
+                      position={c.position}
+                      birthDate={birthDateSplit(c.birthDate)}
+                      mobileNumber={c.mobileNumber}
+                      onClickDelete={(e) => {
+                        e.preventDefault();
+                        dispatch(actions.setDeleteCanModalOpen(true));
+                        setDeleteCandidateInfo({
+                          id: c.id,
+                          name: c.name,
+                          surname: c.surname,
+                        });
+                      }}
+                    />
+                  </NavLink>
+                ))
+              )}
+            </div>
+          </div>
+          <div className={s.paginationWrapper}>
+            {state.getCandidates.loading ? (
+              ""
+            ) : state.getCandidates.totalPages <= 1 ? (
+              ""
+            ) : (
+              <Stack>
+                <Pagination
+                  onChange={(event, value) =>
+                    dispatch(actions.setCurrentPage(value))
+                  }
+                  page={page}
+                  count={limit}
+                  shape="rounded"
+                  variant="outlined"
+                  showFirstButton
+                  showLastButton
+                />
+              </Stack>
+            )}
+          </div>
         </div>
-    );
-}
+      </div>
+    </>
+  );
+};
 
 export default Candidates;

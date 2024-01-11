@@ -1,0 +1,30 @@
+.details {
+
+    .wrapper {
+        .statusBlock {
+            margin: 0 0 20px 0;
+            display: flex;
+            align-items: center;
+            .statusTitle {
+                font-size: 1.5rem;
+                font-weight: 300;
+                font-family: 'Cera Pro';
+                margin-right: 5px;
+            }
+            .status {
+                display: flex;
+                align-items: center;
+                font-size: 1.5rem;
+                font-weight: 300;
+                font-family: 'Cera Pro';
+            }
+        }
+        .infoBlock {
+            .title {
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+        }
+    }
+}
