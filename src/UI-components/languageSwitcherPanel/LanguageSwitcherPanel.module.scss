@@ -1,0 +1,15 @@
+.languageSwitcherPanel {
+    padding: 0.8rem 1rem;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    &:hover {
+        background: rgba(128, 128, 128, 0.144);
+    }
+    .flagImg {
+        width: 25px;
+        height: 25px;
+    }
+    .countryName {}
+}
