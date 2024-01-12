@@ -15,9 +15,11 @@ const ShortMenu = () => {
             <nav id="sidebar-shortMenu" className='shortMenu__nav navshortMenu'>
                 <ul className='shortMenu__list listShortMenu'>
                     <NavLink to={'/'} className='shortMenu__itemLink itemLinkShortMenu'>
+                        <div className='toolTip'>Dashboard</div>
                         <Dashboard className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                     <NavLink to={'/profile/details'} className='shortMenu__itemLink itemLinkShortMenu'>
+                         <div className='toolTip'>Profile</div>
                         <Message className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                 </ul>
@@ -26,9 +28,11 @@ const ShortMenu = () => {
             <nav id="sidebar-shortMenuRecruitment" className='shortMenuRecruitment__nav navshortMenu'>
                 <ul className='shortMenuRecruitment__list listShortMenu'>
                     <NavLink to={'/jobs/all'} className='shortMenuRecruitment__itemLink itemLinkShortMenu'>
+                        <div className='toolTip'>Vacancies</div>
                         <Jobs className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                     <NavLink to={'/candidates'} className='shortMenuRecruitment__itemLink itemLinkShortMenu'>
+                        <div className='toolTip'>Candidates</div>
                         <DashboardRec className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                 </ul>
@@ -37,6 +41,7 @@ const ShortMenu = () => {
             <nav id="sidebar-shortMenuOrganization" className='shortMenuOrganization__nav navshortMenu'>
                 <ul className='shortMenuOrganization__list listShortMenu'>
                     <NavLink to={'/employees'} className='shortMenuOrganization__itemLink itemLinkShortMenu'>
+                        <div className='toolTip'>Employees</div>
                         <Employee className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                 </ul>

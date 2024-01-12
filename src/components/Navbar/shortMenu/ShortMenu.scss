@@ -31,6 +31,7 @@
     padding: 10px 0;
 }
 .itemLinkShortMenu {
+    position: relative;
     color: inherit;
     width: 44px;
     height: 44px;
@@ -38,6 +39,69 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    // &:hover {
+    //     &::before,
+    //     &::after {
+    //     position: absolute;
+    // }
+    // &::before {
+    //     content: 'Candidates';
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     width: 100px;
+    //     height: 30px;
+    //     background-color: grey;
+    //     border-radius: 5px;
+    //     right: -118px;
+    //     font-weight: 700;
+    //     font-size: 1rem;
+    //     color: white;
+    // }
+    // &::after {
+    //     content: '';
+    //     padding: 0 0 0 15px;
+    //     position: absolute;
+    //     right: -110px;
+    //     width: 100px;
+    //     height: 25px;
+    //     background: url('./../../../assets//icon//navbarIcon/arr-left-tooltip.svg') 0 50% no-repeat;
+    // }
+    // }
+    // &:hover::after {
+    //     content: '';
+    //     padding: 0 0 0 15px;
+    //     position: absolute;
+    //     right: -110px;
+    //     width: 100px;
+    //     height: 25px;
+    //     background: url('./../../../assets//icon//navbarIcon/arr-left-tooltip.svg') 0 50% no-repeat;
+    // }
+}
+.itemLinkShortMenu:hover,.toolTip {
+    &:hover {
+        .toolTip {
+            visibility: visible;
+        }
+    }
+}
+.toolTip {
+    visibility: hidden;
+    position: absolute;
+    left: 60px;
+    color: white;
+    background: grey;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    &::before {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 9px;
+        left: -7px;
+        background: url('./../../../assets//icon//navbarIcon/arr-left-tooltip.svg') 0 0 no-repeat;
+    }
 }
 .icon * {
     fill: #C4C4C4;
