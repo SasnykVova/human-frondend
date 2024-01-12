@@ -9,7 +9,7 @@ import Menu from './menu/menu';
 
 const Navbar = () => {
 
-    const [menuActive, setMenuActive] = useState(false);
+    const [menuActive, setMenuActive] = useState(true);
     console.log(menuActive);
 
     return (

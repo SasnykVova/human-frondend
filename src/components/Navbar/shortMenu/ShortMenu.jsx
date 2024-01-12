@@ -7,19 +7,23 @@ import { ReactComponent as Message } from '../../../assets/icon/navbarIcon/messa
 import { ReactComponent as Jobs } from '../../../assets/icon/navbarIcon/job.svg';
 import { ReactComponent as DashboardRec } from '../../../assets/icon/navbarIcon/dashboardRec.svg';
 import { ReactComponent as Employee } from '../../../assets/icon/navbarIcon/employee.svg';
+import { useTranslation } from 'react-i18next';
 
 const ShortMenu = () => {
+
+    const { t } = useTranslation();
+
     return (
         <div>
             <div className={s.menu}></div>
             <nav id="sidebar-shortMenu" className='shortMenu__nav navshortMenu'>
                 <ul className='shortMenu__list listShortMenu'>
                     <NavLink to={'/'} className='shortMenu__itemLink itemLinkShortMenu'>
-                        <div className='toolTip'>Dashboard</div>
+                        <div className='toolTip'>{t("navBar.dashboard")}</div>
                         <Dashboard className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                     <NavLink to={'/profile/details'} className='shortMenu__itemLink itemLinkShortMenu'>
-                         <div className='toolTip'>Profile</div>
+                         <div className='toolTip'>{t("navBar.profile")}</div>
                         <Message className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                 </ul>
@@ -28,11 +32,11 @@ const ShortMenu = () => {
             <nav id="sidebar-shortMenuRecruitment" className='shortMenuRecruitment__nav navshortMenu'>
                 <ul className='shortMenuRecruitment__list listShortMenu'>
                     <NavLink to={'/jobs/all'} className='shortMenuRecruitment__itemLink itemLinkShortMenu'>
-                        <div className='toolTip'>Vacancies</div>
+                        <div className='toolTip'>{t("navBar.vacancies")}</div>
                         <Jobs className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                     <NavLink to={'/candidates'} className='shortMenuRecruitment__itemLink itemLinkShortMenu'>
-                        <div className='toolTip'>Candidates</div>
+                        <div className='toolTip'>{t("navBar.candidates")}</div>
                         <DashboardRec className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                 </ul>
@@ -41,7 +45,7 @@ const ShortMenu = () => {
             <nav id="sidebar-shortMenuOrganization" className='shortMenuOrganization__nav navshortMenu'>
                 <ul className='shortMenuOrganization__list listShortMenu'>
                     <NavLink to={'/employees'} className='shortMenuOrganization__itemLink itemLinkShortMenu'>
-                        <div className='toolTip'>Employees</div>
+                        <div className='toolTip'>{t("navBar.employees")}</div>
                         <Employee className='shortMenu__icon icon' width="24" height="24" />
                     </NavLink>
                 </ul>

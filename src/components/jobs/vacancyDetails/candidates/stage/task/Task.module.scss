@@ -1,22 +1,118 @@
 .task {
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  position: relative;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+
+  .icon {
+    flex: 0 0 25px;
+  }
+  .infoBlock {
+    .userName {
+      font-size: 1.2rem;
+      padding-bottom: 0.4rem;
+    }
+    .position {
+      color: grey;
+    }
+  }
+}
+.deleteTaskPanel {
+    position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    border: 1px solid grey;
-    border-radius: 5px;
+    .iconWrapper {
+      &:hover {
+        .toolTipShow {
+            visibility: visible;
+        }
+        .toolTipDelTask {
+            visibility: visible;
+        }
+      }
+    }
 
-    .icon {
-        
-        flex: 0 0 25px;
-    }
-    .infoBlock {
-        .userName {
-            font-size: 1.2rem;
-            padding-bottom: 0.4rem;
+    .iconWrapper {
+      padding: 0.5rem 0;
+      flex: 1 1 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: border 1s;
+
+      .toolTipShow {
+        visibility: hidden;
+        position: absolute;
+        left: -26px;
+        bottom: -35px;
+        z-index: 5;
+        color: white;
+        background: grey;
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        &::before {
+          content: "";
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          top: -7px;
+          left: 45%;
+          background: url("../../../../../../assets/icon/jobs/vacancy/arrow-up.svg")
+            no-repeat;
         }
-        .position {
-            color: grey;
+      }
+      .toolTipDelTask{
+        visibility: hidden;
+        position: absolute;
+        right: -8px;
+        bottom: -35px;
+        z-index: 5;
+        color: white;
+        background: grey;
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        &::before {
+          content: "";
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          top: -7px;
+          left: 45%;
+          background: url("../../../../../../assets/icon/jobs/vacancy/arrow-up.svg")
+            no-repeat;
         }
+      }
+      .profileButton {
+        color: #377dff;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+        border: 2px solid #377dff;
+        background-color: #377dff25;
+        transition: background-color 0.3s;
+        &:hover {
+          color: #377dff;
+          border: 2px solid #377dff;
+          background-color: white;
+        }
+      }
+      .deleteButton {
+        color: red;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+        border: 2px solid red;
+        background-color: rgba(255, 0, 0, 0.115);
+        transition: background-color 0.3s;
+        &:hover {
+          color: red;
+          border: 2px solid red;
+          background-color: white;
+        }
+      }
     }
-}
+  }

@@ -5,12 +5,10 @@ import { useSelector } from 'react-redux';
 
 const Stage = (props) => {
 
-    // const items = [
-    //     {id: 1, name: 'Vlad', surname: 'Hainuk', position: 'HR'},
-    //     {id: 1, name: 'Vlad', surname: 'Hainuk', position: 'HR'},
-    // ]
+
     console.log(props)
     const [ localProps, setLocalProps] = useState()
+    // const [ deleteTaskPanel, setDeleteTaskPanel ] = useState(false);
 
     const state = useSelector(state => state.jobsPage);
     console.log(props.items)
@@ -49,12 +47,13 @@ const Stage = (props) => {
                             :
                             props.items.map(item => 
                                 <Task
+                                    // onClick={() => setDeleteTaskPanel(true)}
+                                    // deleteTaskPanel={deleteTaskPanel}
                                     onDragOver={(e, item) => props.onDragOver(e, item, column)}
                                     onDragLeave={(e, item, column) => props.onDragLeave(e, item, column)}
                                     onDragStartTask={(e, taskId) => props.onDragStartTask(e, taskId)}
                                     onDragEnd={(e, item) => props.onDragEnd(e, item, column)}
                                     onDrop={(e) => {
-                                        debugger
                                         props.onDrop(e, stageIndex)
                                     }}
                                     draggable={props.draggable}
@@ -63,6 +62,7 @@ const Stage = (props) => {
                                     name={item.candidate.name}
                                     surname={item.candidate.surname}
                                     position={item.candidate.position} 
+                                    id={item.candidate.id}
                                 />)
                         }
                 </div>

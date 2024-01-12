@@ -60,6 +60,13 @@ const initialState = {
         loading: false,
         success: false,
         error: false, 
+    },
+    deleteTask: {
+        loading: false,
+        success: false,
+        error: false, 
+        deleteTaskPanel: false,
+        deleteModal: false,
     }
 }
 
@@ -120,6 +127,17 @@ export const updateTask = createAsyncThunk(
     async ({ vacancyId, taskId, column }, thunkAPI) => {
         try {
             let response = await $api.post(`jobs/${vacancyId}/updateTask`, { id: taskId, column })
+            console.log(response)
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message)
+        }
+    }
+)
+export const deleteTask = createAsyncThunk(
+    'jobs/deleteTask',
+    async ({vacancyId, id}, thunkAPI) => {  
+        try {
+            let response = await $api.delete(`jobs/${vacancyId}/task`, { data: { id } })  
             console.log(response)
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message)
@@ -189,6 +207,12 @@ export const jobsSlice = createSlice({
         setDeactivateSuccFalse(state) {
             state.deactivateJob.success = false
         },
+        setDeleteModal(state, action) {
+            state.deleteTask.deleteModal = action.payload
+        },
+        setDeleteTaskPanel(state, action) {
+            state.deleteTask.deleteTaskPanel = action.payload
+        },
     },
     extraReducers: {
         [getJobs.pending.type]: (state) => {
@@ -256,6 +280,16 @@ export const jobsSlice = createSlice({
         },
         [updateTask.rejected.type]: (state, action) => {
             state.updateTask.error = action.payload
+        },
+        [deleteTask.pending.type]: (state) => {
+            state.deleteTask.loading = true
+        },
+        [deleteTask.fulfilled.type]: (state) => {
+            state.deleteTask.loading = false
+            state.deleteTask.success = true
+        },
+        [deleteTask.rejected.type]: (state, action) => {
+            state.deleteTask.error = action.payload
         },
     }
 })
