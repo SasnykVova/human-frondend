@@ -104,6 +104,8 @@ const VacancyDetails = (props) => {
 
   useEffect(() => {
     dispatch(getJob(vacancyId));
+    dispatch(actions.setAddTaskSuccessFalse())
+    dispatch(actions.setDeleteTaskSuccFalse())
   }, [dispatch, state.addTask.success,state.deleteTask.success]);
 
   useEffect(() => {

@@ -213,6 +213,12 @@ export const jobsSlice = createSlice({
         setDeleteTaskPanel(state, action) {
             state.deleteTask.deleteTaskPanel = action.payload
         },
+        setAddTaskSuccessFalse(state) {
+            state.addTask.success = false
+        },
+        setDeleteTaskSuccFalse(state) {
+            state.deleteTask.success = false
+        },
     },
     extraReducers: {
         [getJobs.pending.type]: (state) => {
