@@ -16,6 +16,16 @@ const initialState = {
     deleteUserLoading: false,
     deleteNavigate: false,
     deleteUserError: '',
+    deleteUser: {
+        loading: false,
+        success: false,
+        error: '',
+    },
+    addUser: {
+        loading: false,
+        success: false,
+        error: '',
+    },
     getOne: {
         loading: false,
         success: false,
@@ -123,32 +133,39 @@ export const employeesSlice = createSlice({
         },
         getDeleteNavigate (state, action) {
             state.deleteNavigate = action.payload
-        }
+        },
+        setAddEmployeeFalse(state) {
+            state.addUser.success = false
+        },
+        setDeleteUserSuccessFalse(state) {
+            state.deleteUser.success = false
+        },
     },
     extraReducers: {
         [addUser.pending.type]: (state) => {
-            state.isLoading = true
+            state.addUser.loading = true
         },
         [addUser.fulfilled.type]: (state) => {
-            state.isLoading = false
-            state.isSuccess = true
+            state.addUser.loading = false
+            state.addUser.success = true
             state.createNewEmployee = false
         },
         [addUser.rejected.type]: (state, action) => {
-            state.isLoading = false
-            state.error = action.payload
+            state.addUser.loading = false
+            state.addUser.error = action.payload
         },
         [deleteUser.pending.type]: (state) => {
-            state.deleteUserLoading = true
+            state.deleteUser.loading = true
         },
         [deleteUser.fulfilled.type]: (state) => {
-            state.deleteUserLoading = false
-            state.deleteUserSuccess = false
+            state.deleteUser.loading = false
+            state.deleteUser.success = true
             state.deleteNavigate = true
+            state.deleteUserSuccess = false
         },
         [deleteUser.rejected.type]: (state, action) => {
-            state.deleteUserLoading = false
-            state.deleteUserError = action.payload
+            state.deleteUser.loading = false
+            state.deleteUser.error = action.payload
         },
         [getOneUser.pending.type]: (state) => {
             state.getOne.loading = true

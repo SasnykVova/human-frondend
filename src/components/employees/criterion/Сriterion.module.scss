@@ -1,7 +1,24 @@
 .criterion {
+    min-width: 19%;
     height: 50px;
     color: #6F767E;
     display: flex;
     align-items: center;
     text-align: center;
+    background-color: white;
+}
+/*===================================================================*/
+
+@media (max-width:1200px) {
+}
+@media (max-width:992px) {
+    .criterion {
+        min-width: 150px;
+    }
+}
+@media (min-width:768px) {
+}
+@media (min-width:480px) {
+}
+@media (min-width:320px) {
 }

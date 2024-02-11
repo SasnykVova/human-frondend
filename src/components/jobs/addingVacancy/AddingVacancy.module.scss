@@ -1,0 +1,69 @@
+.addingVacancy {
+    padding: 15px;
+    background-color: #f5f6fa;
+    min-height: 100%;
+  
+    .wrapper {
+      min-width: 100%;
+      padding: 20px 30px 50px 30px;
+      @media (max-width:480px) {
+        padding: 0px;
+    }
+  
+      .title {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.88rem;
+        color: #333333;
+        padding-bottom: 3rem;
+      }
+        .twoInput {
+          display: flex;
+          gap: 2rem;
+          @media (max-width:1200px) {
+              display: flex;
+              flex-direction: column;
+              gap: 0rem;
+              align-items: start;
+            }
+          .input {
+          }
+        }
+      }
+      .contactInfoBlock {
+          padding-bottom: 2rem;
+      }
+}
+  /*Сommon styles*/
+  .twoInput {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+  }
+  .subTitle {
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding-bottom: 1.5rem;
+    }
+  
+  /*=================*/
+  @media (max-width:1200px) {
+    .twoInput {
+      display: flex;
+      flex-direction: column;
+      gap: 0rem;
+      align-items: start;
+    }
+  }
+  @media (max-width:992px) {}
+  @media (max-width:768px) {
+    .addCandidate {
+      .wrapper {
+        padding: 0px;
+      }
+    }
+  }
+  @media (max-width:480px) {
+  }
+  @media (max-width:320px) {}  

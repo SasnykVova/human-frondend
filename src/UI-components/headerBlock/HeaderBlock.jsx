@@ -40,7 +40,9 @@ const HeaderBlock = (props) => {
                             icon={<AiOutlinePlus size={25} />}
                             onClick={props.onClickMyButton}
                             gap={'10px'}
-                            title={props.titleBtn} />
+                            title={props.titleBtn} 
+                            justContent={'left'}
+                        />
                     </div>
                 </div>
                 <div className={s.searchBlock}>

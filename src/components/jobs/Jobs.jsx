@@ -3,7 +3,7 @@ import s from './Jobs.module.scss';
 // import Vacancy from './vacancy/Vacancy';
 // import { ReactComponent as Add } from '../../assets/icon/jobs/vacancy/add.svg';
 // import { ReactComponent as Close } from '../../assets/icon/jobs/vacancy/close.svg';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
 import './jobs.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { addJob, getJobs, jobsSlice } from '../../toolkitRedux/reducer/jobsSlice';
@@ -25,6 +25,7 @@ const Jobs = (props) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const state = useSelector(state => state.jobsPage)
+    const navigate = useNavigate();
     // const stateAuth = useSelector(state => state.auth)
     const actions = jobsSlice.actions
 
@@ -85,7 +86,7 @@ const Jobs = (props) => {
                 <HeaderBlock
                     title={t("vacancies.title")}
                     titleBtn={t("vacancies.addNewVacancy")} 
-                    onClickMyButton={() => dispatch(actions.setCreateNewVacancy(true))}
+                    onClickMyButton={() => navigate('/jobs/adding')}
                     labelCheckBox={t("vacancies.onlyMine")}
                     isChecked={isChecked}
                     onClickCheckBox={(value) => handleClick(value)}

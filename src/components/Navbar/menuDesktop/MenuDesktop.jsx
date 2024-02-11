@@ -1,43 +1,31 @@
-import React, { useState } from "react";
-import s from "./menu.module.scss";
-import { NavLink, useNavigate } from "react-router-dom";
-import "./menu.scss";
-import { ReactComponent as Dashboard } from "../../../assets/icon/navbarIcon/dashboard.svg";
-import { ReactComponent as Jobs } from "../../../assets/icon/navbarIcon/job.svg";
-import { ReactComponent as DashboardRec } from "../../../assets/icon/navbarIcon/dashboardRec.svg";
-import { ReactComponent as Employee } from "../../../assets/icon/navbarIcon/employee.svg";
+import React, { useState } from 'react';
+import s from './MenuDesktop.module.scss';
+import { NavLink } from 'react-router-dom';
+import './MenuDesktop.scss';
+import { ReactComponent as Dashboard } from '../../../assets/icon/navbarIcon/dashboard.svg';
+import { ReactComponent as Jobs } from '../../../assets/icon/navbarIcon/job.svg';
+import { ReactComponent as DashboardRec } from '../../../assets/icon/navbarIcon/dashboardRec.svg';
+import { ReactComponent as Employee } from '../../../assets/icon/navbarIcon/employee.svg';
 import { ImProfile } from "react-icons/im";
-import { useTranslation } from "react-i18next";
-import { IoIosLogOut } from "react-icons/io";
-import { useDispatch } from "react-redux";
-import { authSlice } from "../../../toolkitRedux/reducer/authSlice";
+import { useTranslation } from 'react-i18next';
 
-const Menu = (props) => {
-  const menuActive = props.menuActive;
-  const setMenuActive = props.onClick;
-  const { t, i18n } = useTranslation();
-  const dispatch = useDispatch();
-  const actions = authSlice.actions;
-  const navigate = useNavigate();
+const MenuDesktop = (props) => {
 
-  const [closedMenu, setClosedMenu] = useState(false);
-
-
-  const handleClosedMenu = () => {
-    setClosedMenu(false);
-    setMenuActive();
-  };
-
-  const logOut = () => {
-    localStorage.removeItem("token");
-    dispatch(actions.logOut());
-    navigate("/login");
-  };
+    const menuActive = props.menuActive;
+    const setMenuActive = props.onClick;
+    const { t, i18n } = useTranslation();
+    const [closedMenu, setClosedMenu ] = useState(false);
+    
+    const handleClosedMenu = () => {
+        setClosedMenu(false)
+    }
 
   return (
-    <div className={closedMenu ? `${s.navbar} ${s.closedMenu}` : `${s.navbar}`}>
-      <div className={s.wrapper}>
-        <div className={s.menuWrapper}>
+    <>
+      <div
+        className={closedMenu ? `${s.navbar} ${s.closedMenu}` : `${s.navbar}`}
+      >
+        <div className={s.wrapper}>
           <div className={s.menu}>{t("navBar.menu")}</div>
           <nav id="sidebar-menu" className="menu__nav nav">
             <ul className="menu__list list">
@@ -104,17 +92,9 @@ const Menu = (props) => {
             </ul>
           </nav>
         </div>
-        <div className={s.buttonsWrapper}>
-        <div className={s.header__avatarWrapper}>
-                <button className={s.button} onClick={() => logOut()}>
-                  <IoIosLogOut color="#333333" size={30} className={s.icon} />
-                  <div className={s.title}>{t("header.logout")}</div>
-                </button>
-              </div>
-        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Menu;
+export default MenuDesktop;

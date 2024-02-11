@@ -43,7 +43,7 @@ const CandidateDetails = () => {
       titleKey: t("candidates.candidateDetails.mobile"),
       value: state.getOne.candidateData.mobileNumber,
     },
-    { titleKey: t("candidates.candidateDetails.location"), value: state.getOne.candidateData.location },
+    { titleKey: t("candidates.candidateDetails.address"), value: state.getOne.candidateData.location },
   ];
   const workInfoData = [
     { titleKey: t("candidates.candidateDetails.position"), value: state.getOne.candidateData.position },
@@ -96,9 +96,11 @@ const CandidateDetails = () => {
                 {t("candidates.candidateDetails.title")} #{state.getOne.candidateData.id}
               </h3>
               <MyButton
+                className={s.button}
                 onClick={() => dispatch(actions.setDeleteCanModalOpen(true))}
                 title={t("candidates.candidateDetails.deleteCandidate")}
                 displayMyButton={"block"}
+                alignSelf={'flex-start'}
                 padMyButton={"20px 50px 0px 0px"}
                 gap={"10px"}
                 icon={<RiDeleteBin6Line />}

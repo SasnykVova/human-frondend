@@ -1,12 +1,10 @@
 .vacancyDetails {
     background-color: #F5F6FA;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
+
 
     .wrapper {
-        width: 100%;
-        padding: 40px 40px 0 40px;
+        padding: 40px 40px 60px 40px;
 
         .text {
             font-size: 1.2rem;
@@ -62,3 +60,21 @@
         z-index: 2;
     }
 }
+
+@media (max-width:1200px) {}
+@media (max-width:992px) {}
+@media (max-width:768px) {
+    .vacancyDetails {
+        .wrapper {
+            padding: 20px 15px;
+            .titleBlock {
+                display: block;
+                .title {
+                    padding-bottom: 15px;
+                }
+            }
+        }
+    }
+}
+@media (max-width:480px) {}
+@media (max-width:320px) {}

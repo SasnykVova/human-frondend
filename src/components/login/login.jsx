@@ -41,11 +41,11 @@ function Login(props) {
                 <div className={s.login__title}>Login to the system</div>
                 <form onSubmit={handlesubmit} action="" className={s.login__form}>
                     <div className={s.inputWrapper}>
-                        <label className={s.inputLabel}>email</label>
+                        <label className={s.inputLabel}>Email</label>
                         <input onChange={(e) => dispatch(actions.loginAC(e.target.value))} value={state.login} type="text" className={s.login__input} />
                     </div>
                     <div className={s.inputWrapper}>
-                        <label className={s.inputLabel}>password</label>
+                        <label className={s.inputLabel}>Password</label>
                         <input onChange={(e) => dispatch(actions.passwordAC(e.target.value))} type="password" value={state.password} className={s.login__input} />
                     </div>
                     {/* <div className={s.login__checkBox}>

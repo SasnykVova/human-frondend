@@ -16,6 +16,8 @@ import VacancyDetails from './components/jobs/vacancyDetails/VacancyDetails';
 import Candidates from './components/candidates/Candidates';
 import CandidateDetails from './components/candidates/candidateDetails/CandidateDetails';
 import AddCandidate from './components/candidates/addCandidate/AddCandidate';
+import AddEmployee from './components/employees/addEmployee/AddEmployee';
+import AddingVacancy from './components/jobs/addingVacancy/AddingVacancy';
 
 
 
@@ -47,14 +49,16 @@ function App() {
               <Route>
                 <Route path='/' element={state.token === null ? <Navigate to={'/login'}/> : <Dashboard/>}/>
                 <Route path='/profile/*' element={state.token === null ? <Navigate to={'/login'}/> : <Profile/>}/>
-                <Route path='/login/registration' element={<RegisterContainer />} />
+                <Route path='/login/registration' element={<RegisterContainer/>} />
                 <Route path='/candidates' element={state.token === null ? <Navigate to={'/login'}/> : <Candidates/>} />
                 <Route path='/candidates/:id' element={state.token === null ? <Navigate to={'/login'}/> : <CandidateDetails/>} />
                 <Route path='/candidates/adding' element={state.token === null ? <Navigate to={'/login'}/> : <AddCandidate/>} />
                 <Route path='/jobs/*' element={state.token === null ? <Navigate to={'/login'}/> : <Jobs/>} />
                 <Route path='/jobs/all/:id/*' element={state.token === null ? <Navigate to={'/login'}/> : <VacancyDetails/>} />
+                <Route path='/jobs/adding' element={state.token === null ? <Navigate to={'/login'}/> : <AddingVacancy/>} />
                 <Route path='/employees' element={state.token === null ? <Navigate to={'/login'}/> : <Employees/>}/>
                 <Route path='/employees/:id' element={state.token === null ? <Navigate to={'/login'}/> : <EmployeeDetails/>}/>
+                <Route path='/employees/adding' element={state.token === null ? <Navigate to={'/login'}/> : <AddEmployee/>}/>
                 <Route path='*' element={<div style={{fontSize: '20px', textAlign: 'center'}}>Not found</div>}/>
               </Route>
           </Routes>

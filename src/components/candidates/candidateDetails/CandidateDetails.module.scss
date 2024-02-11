@@ -11,6 +11,9 @@
 
     .wrapper {
         padding: 20px 30px 50px 30px;
+        @media (max-width:480px) {
+            padding: 30px 15px;
+        }
 
         .header {
             padding: 0 0 30px 0;
@@ -32,3 +35,23 @@
         }
     }
 }
+/*===================================================================*/
+@media (max-width:1200px) {}
+@media (max-width:992px) {
+    .header {
+        flex-direction: column;
+        .headerTitle {
+            align-self: flex-start;
+        }
+    }
+    .button {   
+        align-self: flex-start;
+    }
+}
+@media (max-width:768px) {}
+@media (max-width:480px) {
+    .wrapper {
+        padding: 30px 15px;
+    }
+}
+@media (max-width:320px) {}

@@ -16,7 +16,7 @@ import { MdDone } from "react-icons/md";
 import Loader from '../../UI-components/loader/Loader';
 import SimpleModal from '../../UI-components/simpleModal/simpleModal';
 import birthDateSplit from '../../assets/common/birthDateSplit';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import HeaderBlock from './../../UI-components/headerBlock/HeaderBlock';
 import debounce from '../../assets/common/debounce';
 import { useTranslation } from 'react-i18next';
@@ -29,8 +29,10 @@ const Employees = () => {
     const { t } = useTranslation();
 
     const state = useSelector(state => state.employeesPage);
+    const stateEmp = useSelector(state => state.candidatesPage);
     const dispatch = useDispatch();
     const { ...actions } = employeesSlice.actions
+    const navigate = useNavigate();
 
     const [name, setName] = useState();
     const [email, setEmail] = useState();
@@ -68,6 +70,9 @@ const Employees = () => {
     const delEmpId = delEmpModal.id
 
     useEffect(() => {
+        if(state.deleteUser.success) {
+            dispatch(actions.setDeleteUserSuccessFalse())
+        }
         dispatch(getUsers(state.limit, state.currentPage))
         setName('')
         setPosition('')
@@ -80,7 +85,7 @@ const Employees = () => {
         setEmail('')
         setStartDate('')
         setGender('')
-    }, [state.currentPage, dispatch, state.limit, state.isSuccess, state.deleteUserSuccess])
+    }, [state.currentPage, dispatch, state.limit, state.deleteUser.success])
 
     const addOneUser = () => {
         dispatch(addUser({ name, position, birthDate, department, surname, mobileNumber, address, email, role, startDate, gender }))
@@ -134,36 +139,21 @@ const Employees = () => {
                     titleBtn={t(`employees.addEmployee`)}
                     searchInputDisplay={'none'}
                     labelSearchInput={t(`employees.search`)}
-                    onClickMyButton={() => dispatch(actions.getCreateNewEmployee(true))}
+                    onClickMyButton={() => navigate('/employees/adding')}
                     onChangeSearchInput={handleChange}
                     valueSearchInput={filter}
                     placeholder={t(`employees.searchPlaceholder`)}
                 />
-                {/* <div className={s.titleBlockWrapper}>
-                    <div className={s.titleBlock}>
-                        <div className={s.title}>Employees</div>
-                        <div className={s.totalNumber}>
-                            <div className={s.totalTitle}>Employees list</div>
-                            <div className={s.totalNumber}></div>
-                        </div>
-                    </div>
-                    <div className={s.btnWrapper}>
-                        <MyButton 
-                        onClick={() => dispatch(actions.getCreateNewEmployee(true))} 
-                        className={s.addEmpBtn} 
-                        icon={<AiOutlinePlus size={25} />} 
-                        gap={'10px'} 
-                        title={'Add New Employee'} />
-                    </div>
-                </div> */}
-                <div className={s.employeesBlock}>
+                <div 
+                    className={s.employeesBlock} 
+                    style={{maxWidth: (stateEmp.navBar.isOpen && window.innerWidth > 767) ? 'calc(100vw - 266px)' : window.innerWidth < 320 ? 'calc(100vw - 28px' : 'calc(100vw - 64px)'}}>
                     <div className={s.criteriaBlock}>
-                        <Criterion width={'19%'} icon={''} title={t(`employees.employee`)} />
-                        <Criterion width={'19%'} icon={''} title={t(`employees.position`)} />
-                        <Criterion width={'19%'} icon={''} title={t(`employees.location`)} />
-                        <Criterion width={'19%'} icon={''} title={t(`employees.mobileNumber`)} />
-                        <Criterion width={'19%'} icon={''} title={t(`employees.birthdate`)} />
-                        <Criterion width={'5%'} icon={''} title={''} />
+                        <Criterion icon={''} title={t(`employees.employee`)} />
+                        <Criterion icon={''} title={t(`employees.position`)} />
+                        <Criterion icon={''} title={t(`employees.location`)} />
+                        <Criterion icon={''} title={t(`employees.mobileNumber`)} />
+                        <Criterion icon={''} title={t(`employees.birthdate`)} />
+                        <Criterion width={'50px'} icon={''} title={''} />
                     </div>
                     <div className={s.employees}>
                         <SimpleModal 

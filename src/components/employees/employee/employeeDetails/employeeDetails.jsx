@@ -97,6 +97,7 @@ const EmployeeDetails = () => {
               <MyButton
                 onClick={() => dispatch(actions.getDeleteUserSuccess(true))}
                 title={t(`empoyeeDetails.deleteEmployee`)}
+                alignSelf={'flex-start'}
                 displayMyButton={"block"}
                 padMyButton={"20px 50px 0px 0px"}
                 gap={"10px"}

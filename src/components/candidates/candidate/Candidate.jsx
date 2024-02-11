@@ -13,14 +13,14 @@ const Candidate = (props) => {
         <>
             <div onClick={props.onClickTest} className={s.candidate}>
                 <div className={s.wrapper}>
-                    <div className={s.name}>{props.name} {props.surname}</div>
-                    <div className={s.location}>{props.location}</div>
-                    <div className={s.position}>{props.position}</div>
-                    <div className={s.mobileNumber}>{props.mobileNumber}</div>
-                    <div className={s.birthDate}>{props.birthDate}</div>
+                    <div className={s.name}><div className={s.text}>{props.name} {props.surname}</div></div>
+                    <div className={s.location}><div className={s.text}>{props.location}</div></div>
+                    <div className={s.position}><div className={s.text}>{props.position}</div></div>
+                    <div className={s.mobileNumber}><div className={s.text}>{props.mobileNumber}</div></div>
+                    <div className={s.birthDate}><div className={s.text}>{props.birthDate}</div></div>
                     <div className={s.deleteBtn} onClick={props.onClickDelete} onMouseEnter={() => setHover(true)}
                         onMouseLeave={() => setHover(false)}>
-                        <RiDeleteBin6Line color={hover ? 'red' : '#000'} size={25} />
+                        <div className={s.text}><RiDeleteBin6Line color={hover ? 'red' : '#000'} size={25} /></div>
                     </div>
                 </div>
                 <Routes>

@@ -32,3 +32,33 @@
     }
   }
 }
+/*===================================================================*/
+@media (max-width: 1200px) {
+}
+@media (max-width: 992px) {
+  .header {
+    flex-direction: column;
+    .headerTitle {
+      align-self: flex-start;
+    }
+  }
+  .button {
+    align-self: flex-start;
+  }
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 480px) {
+  .employeeDetails {
+    .wrapper {
+      padding: 20px 15px;
+    }
+  }
+}
+@media (max-width: 320px) {
+  .employeeDetails {
+    .wrapper {
+      padding: 20px 15px;
+    }
+  }
+}

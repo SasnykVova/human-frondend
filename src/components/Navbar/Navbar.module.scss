@@ -5,9 +5,10 @@
     height: 26px;
     display: flex;
     align-items: center;
-    position: absolute;
+    position: fixed;
     top: 8px;
     left: 15px;
+    z-index: 50;
     cursor: pointer;
 
     &::before {
@@ -39,3 +40,6 @@
 }
 
 /*=============*/
+.navbar {
+    position: relative;
+}

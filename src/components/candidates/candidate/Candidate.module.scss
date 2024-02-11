@@ -1,36 +1,88 @@
 .candidate {
     margin: 2px 0;
+    min-width: max-content;
     color: #333333;
-    background-color: #fff;
     height: 54px;
 
     .wrapper {
-        padding: 0 0 0 15px;
-        width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
+        background-color: white;
+        padding: 0 15px;
 
         .name {
-            flex: 0 1 19%;
+            height: 100%;
+            flex: 0 0 19%;
         }
 
         .position {
-            flex: 0 1 19%;
+            height: 100%;
+            flex: 0 0 19%;
         }
 
         .location {
-            flex: 0 1 19%;
+            height: 100%;
+            flex: 0 0 19%;
         }
 
         .birthDate {
-            flex: 0 1 19%;
+            height: 100%;
+            flex: 0 0 19%;
         }
         .mobileNumber {
-            flex: 0 1 19%;
+            height: 100%;
+            flex: 0 0 19%;
         }
         .deleteBtn {
-            flex: 0 1 5%;
+            height: 100%;
+            flex: 0 0 50px;
         }
     }
+}
+.text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+/*===================================================================*/
+@media screen and (max-width:1023px) {    
+}
+@media (max-width:1200px) {
+}
+@media (max-width:992px) {
+    .candidate {   
+        .wrapper {
+            .name {
+                flex: 0 0 150px;
+            }
+    
+            .position {
+                flex: 0 0 150px;
+            }
+    
+            .location {
+                flex: 0 0 150px;
+            }
+    
+            .birthDate {
+                flex: 0 0 150px;
+            }
+            .mobileNumber {
+                flex: 0 0 150px;
+            }
+            .deleteBtn {
+                flex: 0 0 50px;
+            }
+        }
+    }
+}
+@media (min-width:768px) {
+}
+@media (min-width:480px) {
+}
+@media (min-width:320px) {
 }

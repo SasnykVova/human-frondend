@@ -219,6 +219,9 @@ export const jobsSlice = createSlice({
         setDeleteTaskSuccFalse(state) {
             state.deleteTask.success = false
         },
+        setAddJobSuccessFalse(state) {
+            state.addJob.success = false
+        },
     },
     extraReducers: {
         [getJobs.pending.type]: (state) => {

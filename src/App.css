@@ -70,21 +70,39 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 .app-wrapper {
 	font-family: 'Cera Pro';
 	font-weight: 400;
-	padding: 0 0 0 15px;
 	display: grid;
 	grid-template-areas: 
-	"h h"
+	"n h"
 	"n m";
 	grid-template-columns: auto 1fr;
 }
 .header {
 }
 .navBar {
+	position: relative;
 }
 .main-content {
+	padding: 80px 0 0 0px;
+	width: auto;
+	min-height: 100vh;
 }
 .login-block {
 	font-family: 'Cera Pro';
 	font-weight: 700;
+}
+/*========================================================*/
+
+@media screen and (min-width:767px) and (max-width:1023px) {
+	/* html,body{
+		font-size: 14px;
+	} */
+}
+@media screen and (max-width:767px) {
+	html,body{
+		font-size: 12px;
+	}
+    .app-wrapper {
+		padding: 0;
+	}
 }
 

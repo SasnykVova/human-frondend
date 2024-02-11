@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 const Candidates = () => {
 
     const state = useSelector(state => state.jobsPage);
+    const stateCan = useSelector(state => state.candidatesPage);
     const dispatch = useDispatch();
     const jobDetails = state.jobDetails;
     const location = useLocation();
@@ -94,7 +95,13 @@ const Candidates = () => {
         <>
             <div className={state.updateTask.loading 
                 ? `${s.candidates} ${s.candidatesUpdateTask}` : (state.getJob.loading ? `${s.candidates} ${s.candidatesUpdateTask}` : `${s.candidates}`)}>
-                <div className={s.wrapper}>
+                <div 
+                    className={s.wrapper}
+                    style={{maxWidth: (stateCan.navBar.isOpen && window.innerWidth > 766) ? 
+                        'calc(100vw - 363px)' : (!stateCan.navBar.isOpen && window.innerWidth > 766) ?
+                        'calc(100vw - 161px)' : 'calc(100vw - 30px)'
+                    }}
+                    >
                         <Stage 
                             key={stages[0].id}
                             index={'0'} 

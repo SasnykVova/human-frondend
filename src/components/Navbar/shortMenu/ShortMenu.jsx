@@ -14,7 +14,8 @@ const ShortMenu = () => {
     const { t } = useTranslation();
 
     return (
-        <div>
+        <div className={s.navbar}>
+            <div className={s.wrapper}>
             <div className={s.menu}></div>
             <nav id="sidebar-shortMenu" className='shortMenu__nav navshortMenu'>
                 <ul className='shortMenu__list listShortMenu'>
@@ -50,6 +51,7 @@ const ShortMenu = () => {
                     </NavLink>
                 </ul>
             </nav>
+            </div>
         </div>
     );
 }

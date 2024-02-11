@@ -2,15 +2,16 @@ import React from "react";
 import s from "./Select.module.scss";
 
 const Select = (props) => {
+
+
   return (
     <>
       <div className={s.select}>
         <label className={s.label}>{props.label}</label>
-        <select className={s.select} onChange={props.onChangeSelect} value={props.value}>
-            <option className={s.option} value='Male'>Male</option>
-            <option className={s.option} value='Female'>Female</option>
-            <option className={s.option} value='Another'>Another</option>
+        <select className={s.select} onChange={(e) => props.onChangeSelect(e.target.value)} value={props.value}>
+          {props.data?.map(o => <option className={s.option} key={o.id} value={o.value}>{o.value}</option>)}
         </select>
+        {props.children}
       </div>
     </>
   );

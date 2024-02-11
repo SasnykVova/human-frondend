@@ -15,7 +15,9 @@ const Dashboard = () => {
                         <h1 className={s.title}>{t('dashboard.welcome')}</h1>
                         <img className={s.hiImg} src={hi} alt='Hi' />
                     </div>
-                    <img className={s.image} src={welcome} alt='Banner welcome' />
+                    <div className={s.imgWrapper}>
+                        <img className={s.image} src={welcome} alt='Banner welcome' />
+                    </div>
                 </div>
             </div>
         </>

@@ -1,5 +1,5 @@
 .stage {
-    width: 188px;
+    min-width: 250px;
     min-height: 468px;
     background: white;
     padding: 12px;
@@ -35,3 +35,13 @@
         gap: 0.5rem;
     }
 }
+
+@media (max-width:1200px) {}
+@media (max-width:992px) {}
+@media (max-width:768px) {
+    .stage {
+        min-width: 200px;
+    }
+}
+@media (max-width:480px) {}
+@media (max-width:320px) {}

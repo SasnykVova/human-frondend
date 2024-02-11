@@ -31,12 +31,12 @@ const Candidates = () => {
 
 
   const criteriaData = [
-    { id: 1, title: t("candidates.candidate"), width: "19%" },
-    { id: 2, title: t("candidates.location"), width: "19%" },
-    { id: 3, title: t("candidates.position"), width: "19%" },
-    { id: 4, title: t("candidates.mobileNumber"), width: "19%" },
-    { id: 5, title: t("candidates.birthdate"), width: "19%" },
-    { id: 6, title: "", width: "5%" },
+    { id: 1, title: t("candidates.candidate"), },
+    { id: 2, title: t("candidates.location"), },
+    { id: 3, title: t("candidates.position"), },
+    { id: 4, title: t("candidates.mobileNumber"), },
+    { id: 5, title: t("candidates.birthdate"), },
+    { id: 6, title: "", width: "50px" },
   ];
 
   const [deleteCandidateInfo, setDeleteCandidateInfo] = useState({
@@ -108,22 +108,25 @@ const Candidates = () => {
             valueSearchInput={searchValue}
             placeholder={t("candidates.searchPlaceholder")}
           />
-          <div className={s.candidatesBlock}>
+          <div 
+            className={s.candidatesBlock} 
+            style={{maxWidth: (state.navBar.isOpen && window.innerWidth > 767) ? 'calc(100vw - 266px)' : window.innerWidth < 320 ? 'calc(100vw - 28px' : 'calc(100vw - 64px)'}}>  
             <div className={s.criteriaBlock}>
               {criteriaData.map((c) => (
                 <Criterion key={c.id} width={c.width} title={c.title} />
               ))}
             </div>
-            <div className={s.candidates}>
-              {state.getCandidates.loading ? (
+            {state.getCandidates.loading ? (
                 <LoaderThreeLine />
-              ) : (
-                state.getCandidates.candidatesData.map((c) => (
+              ) :
+            <div className={s.candidates}>
+                {state.getCandidates.candidatesData.map((c) => (
                   <NavLink
                     onClick={() => dispatch(actions.setCandidateId(c.id))}
                     to={`/candidates/${c.id}`}
                   >
                     <Candidate
+                      className={s.candidatesBlock}
                       key={c.id}
                       name={c.name}
                       surname={c.surname}
@@ -142,9 +145,8 @@ const Candidates = () => {
                       }}
                     />
                   </NavLink>
-                ))
-              )}
-            </div>
+                ))}
+            </div>}
           </div>
           <div className={s.paginationWrapper}>
             {state.getCandidates.loading ? (

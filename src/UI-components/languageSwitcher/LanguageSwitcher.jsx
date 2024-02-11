@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import s from './LanguageSwitcher.module.scss';
 import { IoIosArrowBack } from "react-icons/io";
 import LanguageSwitcherPanel from "../languageSwitcherPanel/LanguageSwitcherPanel";
@@ -6,6 +6,20 @@ import LanguageSwitcherPanel from "../languageSwitcherPanel/LanguageSwitcherPane
 const LanguageSwitcher = (props) => {
 
     const { onClickSwitcher, selectedLanguageData, languagesIsOpen, languagesData, onClickPanelItem} = props;
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Прибрати слухач подій при видаленні компонента
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -14,12 +28,24 @@ const LanguageSwitcher = (props) => {
         onClick={onClickSwitcher}
       >
         <div className={s.languageBlock}>
+          {windowWidth > 766 ?
+          <div className={s.wrapperSelect}>
+            <img
+              className={s.flagImg}
+              src={selectedLanguageData.flag}
+              alt="Flag"
+            />
+            <div>{selectedLanguageData.name}</div>
+          </div>
+          :
+          <div className={s.wrapperSelect}>
           <img
             className={s.flagImg}
             src={selectedLanguageData.flag}
             alt="Flag"
           />
-          <div>{selectedLanguageData.name}</div>
+          </div>
+}
         </div>
         <IoIosArrowBack
           className={
@@ -27,6 +53,7 @@ const LanguageSwitcher = (props) => {
           }
           size={15}
         />
+        {languagesIsOpen ? 
         <div className={s.selectPanel}>
           {languagesData.map((i) => (
             <LanguageSwitcherPanel
@@ -41,6 +68,9 @@ const LanguageSwitcher = (props) => {
             />
           ))}
         </div>
+        :
+        ''
+        }
       </div>
     </>
   );

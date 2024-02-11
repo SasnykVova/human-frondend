@@ -21,18 +21,26 @@
         align-items: center;
         gap: 10px;
         border-radius: 20px;
+        @media (max-width:768px) {
+            padding: 30px;
+        }
     }
     &__title {
         padding: 20px 0px;
-        font-size: 30px;
-        font-weight: 500;
+        font-size: 2rem;
+        font-weight: 800;
         color: #000;
         line-height: 1.2;
         text-align: center;
+        @media (max-width:320px) {
+            font-size: 1.8rem;
+        }
     }
     &__form {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 15px;
 
         .inputWrapper {
@@ -56,6 +64,13 @@
         height: 62px;
         border-radius: 5px;
         padding: 0px 15px;
+        @media (max-width:768px) {
+            max-width: 250px;
+            height: 40px;
+        }
+        @media (max-width:320px) {
+            max-width: 220px;
+        }
 
         &::placeholder {
             color: #1870a3;
@@ -91,10 +106,18 @@
         border-radius: 5px;
         background-color: #377DFF;
         color: white;
-        font-size: 20px;
+        font-size: 1.8rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         line-height: 1.2;
+        @media (max-width:768px) {
+            max-width: 250px;
+            height: 40px;
+        }
+        @media (max-width:320px) {
+            max-width: 220px;
+            font-size: 1.5rem;
+        }
     }
     &__registration {
         font-size: 16px;
@@ -103,3 +126,8 @@
         color: red;
     }
 }
+@media (max-width:1200px) {}
+@media (max-width:992px) {}
+@media (max-width:768px) {}
+@media (max-width:480px) {}
+@media (max-width:320px) {}

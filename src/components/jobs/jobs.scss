@@ -32,3 +32,9 @@
 .unfinisheds {
     color: inherit;
 }
+/*============*/
+@media (max-width: 767px) {
+    .statusBlock {
+        padding: 30px 0 8px 0;
+    }
+}

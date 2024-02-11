@@ -1,10 +1,25 @@
 .candidates {
     .wrapper {
+        padding-bottom: 20px;
+        border: 2px solid rgba(128, 128, 128, 0.178);
+        border-radius: 5px;
         display: flex;
         gap: 1.5rem;
+        max-width: calc(100vw - 161px);
+        overflow-x: auto;
 }
 }
 .candidatesUpdateTask {
     opacity: 50%;
     pointer-events: none;
+}
+
+/*===================================================================*/
+@media screen and (min-width:767px) and (max-width:1023px) {
+    .candidates {
+        
+    }
+
+}
+@media screen and (max-width:767px) {
 }

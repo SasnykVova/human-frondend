@@ -78,6 +78,7 @@ const Header = () => {
         <div className={s.header__blockWrapper}>
           <div className={s.header__userBlock}>
             <LanguageSwitcher
+              className={s.languageSwitcher}
               onClickSwitcher={() => handleOpen(languagesIsOpen)}
               selectedLanguageData={selectedLanguageData}
               languagesIsOpen={languagesIsOpen}

@@ -1,8 +1,7 @@
 .addJobInput {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding-bottom: 1.5rem;
+    gap: 5px;
 
     &__label {
         font-size: 1.2rem;
@@ -10,13 +9,14 @@
     }
     &__textarea {
         font-weight: 300;
-        padding: 25.5px 5px;
+        height: 50px;
         font-size: 16px;
         color: inherit;
         width: 390px;
         background: rgba(0, 0, 0, 0.023);
         border-radius: 5px;
         border: 1px solid grey;
+        padding: 0.75rem 1rem;
 
         &:focus {
             transition: all ease-in-out 0.2s;
@@ -41,3 +41,29 @@
         }
     }
 }
+.errors {
+    color: red;
+}
+.errorsWrapper {
+    height: 20px;
+}
+
+@media (max-width:1200px) {
+    .addJobInput {
+        width: 100%;
+        &__textarea {
+            min-width: 100%;
+        }
+    }
+}
+@media (max-width:992px) {}
+@media (max-width:768px) {}
+@media (max-width:480px) {
+    .addJobInput {
+        min-width: 100%;
+        &__textarea {
+            max-width: 250px;
+        }
+    }
+}
+@media (max-width:320px) {}

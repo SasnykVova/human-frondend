@@ -5,7 +5,7 @@ import Select from "../../../UI-components/select/Select";
 import MyInput from "../../../UI-components/input/MyInput";
 import MyButton from "../../../UI-components/button/MyButton";
 import { useDispatch, useSelector } from "react-redux";
-import { addCandidate } from "../../../toolkitRedux/reducer/candidatesSlice";
+import { addCandidate, candidatesSlice } from "../../../toolkitRedux/reducer/candidatesSlice";
 import Loader from "../../../UI-components/loader/Loader";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,7 @@ const AddCandidate = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.candidatesPage);
   const navigate = useNavigate();
+  const actions = candidatesSlice.actions;
 
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
@@ -26,6 +27,12 @@ const AddCandidate = () => {
   const [address, setAddress] = useState();
   const [position, setPosition] = useState();
   const [salary, setSalary] = useState();
+
+  const selectData = [
+    {id: 1, value: 'Male'},
+    {id: 2, value: 'Female'},
+    {id: 3, value: 'Another'},
+  ]
   
   const handleSumbit = () => {
          dispatch(addCandidate({name, surname, gender, birthDate, email, mobileNumber, address, position, salary}))
@@ -33,6 +40,7 @@ const AddCandidate = () => {
   useEffect(() => {
     if(state.addCandidate.success) {
         navigate('/candidates')
+        dispatch(actions.setAddCandidateSuccessFalse())
     }
   }, [state.addCandidate.success])
 
@@ -60,9 +68,10 @@ const AddCandidate = () => {
             <div className={s.twoInput}>
               <Select
                 className={s.input}
+                data={selectData}
                 label={t("addCandidate.genderTitle")}
                 value={gender}
-                onChangeSelect={(e) => setGender(e.target.value)}
+                onChangeSelect={(value) => setGender(value)}
               />
               <MyInput
                 className={s.input}

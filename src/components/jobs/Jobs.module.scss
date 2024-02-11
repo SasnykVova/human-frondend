@@ -1,6 +1,8 @@
 .jobs {
     background-color: #F5F6FA;
-    min-height: 100vh;
+    padding-bottom: 20px;
+    height: 100%;
+    max-width: 100%;
 
     &__wrapper {
         padding: 20px 30px 30px 30px;
@@ -52,6 +54,8 @@
     display: flex;
     justify-content: center;
 }
+.routeWrapper {
+}
 /*===========*/
 .createJobModal {
     height: 100vh;
@@ -94,5 +98,17 @@
         font-size: 20px;
         font-weight: 700;
         border-radius: 5px;
+    }
+}
+
+/*===================================================================*/
+@media screen and (min-width:767px) and (max-width:1023px) {
+
+}
+@media screen and (max-width:767px) {
+    .jobs {
+        &__wrapper {
+            padding: 20px 10px;
+        }
     }
 }

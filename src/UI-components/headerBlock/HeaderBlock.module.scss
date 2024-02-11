@@ -25,3 +25,33 @@
         align-items: center;
     }
 }
+
+/*===================================================================*/
+
+@media screen and (min-width:767px) and (max-width:1023px) {
+
+}
+@media screen and (max-width:767px) {
+    .headerBlock {
+        .titleBtnBlock {
+            display: flex;
+            flex-direction: column;
+            .title {
+                padding-bottom: 1.5rem;
+                .text {
+                }
+            }
+        }
+        .searchBlock {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+    }
+}
+
+@media (max-width:480px) {
+    .headerBlock {
+        padding: 0px;
+    }
+}

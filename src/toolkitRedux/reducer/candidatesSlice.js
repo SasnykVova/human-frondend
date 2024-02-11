@@ -40,6 +40,10 @@ const initialState = {
         success: false,
         error: false,
     },
+    navBar: {
+        isOpen: true,
+        mobileIsOpen: false,
+    },
 }
 
 export const getCandidates = createAsyncThunk(
@@ -134,6 +138,18 @@ export const candidatesSlice = createSlice({
         },
         setSeachCandidateName(state, action) {
             state.getSearchCandidate.candidateName = action.payload
+        },
+        setAddCandidateSuccessFalse(state) {
+            state.addCandidate.success = false
+        },
+        setNavBarIsOpen(state, action) {
+            state.navBar.isOpen = action.payload
+        },
+        setMobileNavBarIsOpenFalse(state) {
+            state.navBar.mobileIsOpen = false
+        },
+        setMobileNavBarIsOpen(state, action) {
+            state.navBar.mobileIsOpen = action.payload
         },
     },
     extraReducers:{
