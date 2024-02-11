@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addJob, jobsSlice } from "../../../toolkitRedux/reducer/jobsSlice";
 import MyInput from "../../../UI-components/input/MyInput";
 import { useNavigate } from "react-router";
+import { useForm } from "react-hook-form";
 
 const AddingVacancy = () => {
   const { t } = useTranslation();
@@ -53,72 +54,93 @@ const AddingVacancy = () => {
     }
   }, [state.addJob.success])
 
+  const {
+    register,
+    formState: { errors, isValid },
+    reset,
+    handleSubmit,
+  } = useForm({
+    mode: "onChange",
+  });
+  const submit = (data) => {
+    const { name, surname, birthDate, email, mobileNumber, address, position, salary } = data;
+    reset();
+  };
+
   return (
     <>
       <div className={s.addingVacancy}>
-        <div className={s.wrapper}>
+        <form className={s.wrapper} onSubmit={handleSubmit(submit)}>
           <h1 className={s.title}>{t("addVacancy.title")}</h1>
           <div className={s.twoInput}>
             <AddJobInput
               className={s.input}
               label={t("addVacancy.department")}
-              onChange={(value) => setDepartment(value)}
-              value={department}
+              name={'department'}
+              register={register}
+              errors={errors}
             />
             <AddJobInput
               className={s.input}
               label={t("addVacancy.position")}
-              onChange={(value) => setPosition(value)}
-              value={position}
+              name={'position'}
+              register={register}
+              errors={errors}
             />
           </div>
           <div className={s.twoInput}>
             <AddJobInput
               className={s.input}
-              onChange={(value) => setLocation(value)}
-              value={location}
               label={t("addVacancy.location")}
-              widthInput={"809px"}
+              name={'location'}
+              register={register}
+              errors={errors}
+              widthInput={'809px'}
             />
           </div>
           <div className={s.twoInput}>
             <MyInput
               className={s.input}
               label={t("addVacancy.deadlineDate")}
-              onChange={(value) => setDeadlineDate(value)}
-              value={deadlineDate}
+              name={'deadlineDate'}
+              register={register}
+              errors={errors}
               type={"date"}
             />
             <AddJobInput
               className={s.input}
               label={t("addVacancy.assignedTo")}
               placeholder={t("addVacancy.findEmployee")}
-              // onChange={(value) => setSurname(value)}
-              // value={surname}
-              disabled={'true'}
+              name={'assignedTo'}
+              register={register}
+              errors={errors}
+              // disabled={'true'}
             />
           </div>
           <div className={s.twoInput}>
             <MyInput
               className={s.input}
               label={t("addVacancy.salaryMin")}
-              onChange={(value) => setSalaryMin(value)}
-              value={salaryMin}
+              name={'salaryMin'}
+              register={register}
+              errors={errors}
               type={"number"}
             />
             <MyInput
               className={s.input}
               label={t("addVacancy.salaryMax")}
-              onChange={(value) => setSalaryMax(value)}
-              value={salaryMax}
+              name={'salaryMax'}
+              register={register}
+              errors={errors}
               type={"number"}
             />
           </div>
           <div className={s.twoInput}>
             <Textarea
               label={t("addVacancy.description")}
-              onChange={(value) => setDescription(value)}
-              value={description}
+              name={'description'}
+              register={register}
+              errors={errors}
               heightInput={'150px'}
             />
           </div>
@@ -132,10 +154,10 @@ const AddingVacancy = () => {
               )
             }
             justContent={"left"}
-            onClick={addJobFunc}
             isLoading={state.addJob.loading}
+            disabled={!isValid && "true"}
           />
-        </div>
+        </form>
       </div>
     </>
   );

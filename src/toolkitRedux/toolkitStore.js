@@ -5,6 +5,7 @@ import registertoolkitReducer from "./registertoolkitReducer";
 import employessReducer from './reducer/employeesSlice';
 import jobsSlice from "./reducer/jobsSlice";
 import candidatesSlice from "./reducer/candidatesSlice";
+import profileSlice from "./reducer/profileSlice";
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     employeesPage: employessReducer,
     registerPage: registertoolkitReducer,
     candidatesPage: candidatesSlice,
+    profilePage: profileSlice,
 })
 
 const store = configureStore({

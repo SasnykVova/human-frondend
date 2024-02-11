@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 const AddJobInput = (props) => {
   const disabled = props.disabled;
 
-  const { label, name, register, errors, validation, pattern } = props;
+  const { label, name, register, errors, validation, pattern, minLength, validationLength, customValidate, customValidateMessage } = props;
   const { t } = useTranslation();
 
   return (
@@ -21,20 +21,24 @@ const AddJobInput = (props) => {
           minWidth: window.innerWidth > 1200 ? props.widthInput : "100%",
           height: window.innerWidth > 1200 ? props.heightInput : "100%",
           letterSpacing: props.type === "password" ? "0.1rem" : "",
-          border: errors[name] && "1px solid red",
-          boxShadow: errors[name] && "0 0 0 1px red",
+          border: errors?.[name] && "1px solid red",
+          boxShadow: errors?.[name] && "0 0 0 1px red",
         }}
         {...register(name, { 
             required: `${t("validation.required")}`,
             pattern: {
                 value: pattern,
                 message: validation,
-              } 
+              },
+            minLength: {
+                value: minLength,
+                message: validationLength,
+            },
         })}
         // onChange={(e) => props.onChange(e.target.value)} value={props.value}
       ></input>
       <div className={s.errorsWrapper}>
-        {errors[name] && <p className={s.errors}>{errors[name]?.message}</p>}
+        {errors?.[name] && <p className={s.errors}>{errors?.[name]?.message}</p>}
       </div>
     </div>
   );

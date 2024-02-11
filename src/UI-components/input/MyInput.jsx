@@ -13,7 +13,7 @@ const MyInput = (props) => {
         id="datePickerBlock"
         type={props.type}
         // onChange={(e) => props.onChange(e.target.value)}
-        value={props.value}
+        // value={props.value}
         {...register(name, { 
             required: `${t("validation.required")}`,
             pattern: {

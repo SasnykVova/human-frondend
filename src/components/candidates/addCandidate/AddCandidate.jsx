@@ -9,6 +9,7 @@ import { addCandidate, candidatesSlice } from "../../../toolkitRedux/reducer/can
 import Loader from "../../../UI-components/loader/Loader";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
 
 const AddCandidate = () => {
 
@@ -18,15 +19,7 @@ const AddCandidate = () => {
   const navigate = useNavigate();
   const actions = candidatesSlice.actions;
 
-  const [name, setName] = useState();
-  const [surname, setSurname] = useState();
   const [gender, setGender] = useState("Male");
-  const [birthDate, setBirthDate] = useState();
-  const [email, setEmail] = useState();
-  const [mobileNumber, setMobileNumber] = useState();
-  const [address, setAddress] = useState();
-  const [position, setPosition] = useState();
-  const [salary, setSalary] = useState();
 
   const selectData = [
     {id: 1, value: 'Male'},
@@ -34,9 +27,6 @@ const AddCandidate = () => {
     {id: 3, value: 'Another'},
   ]
   
-  const handleSumbit = () => {
-         dispatch(addCandidate({name, surname, gender, birthDate, email, mobileNumber, address, position, salary}))
-  }
   useEffect(() => {
     if(state.addCandidate.success) {
         navigate('/candidates')
@@ -44,10 +34,24 @@ const AddCandidate = () => {
     }
   }, [state.addCandidate.success])
 
+  const {
+    register,
+    formState: { errors, isValid },
+    reset,
+    handleSubmit,
+  } = useForm({
+    mode: "onChange",
+  });
+  const submit = (data) => {
+    const { name, surname, birthDate, email, mobileNumber, address, position, salary } = data;
+    dispatch(addCandidate({name, surname, gender, birthDate, email, mobileNumber, address, position, salary}))
+    reset();
+  };
+
   return (
     <>
       <div className={s.addCandidate}>
-        <div className={s.wrapper}>
+        <form className={s.wrapper} onSubmit={handleSubmit(submit)}>
           <h1 className={s.title}>{t("addCandidate.title")}</h1>
           <div className={s.personalInfoBlock}>
             <h3 className={s.subTitle}>{t("addCandidate.personalInfo")}</h3>
@@ -55,14 +59,16 @@ const AddCandidate = () => {
               <AddJobInput
                 className={s.input}
                 label={t("addCandidate.name")}
-                onChange={(value) => setName(value)}
-                value={name}
+                name={'name'}
+                register={register}
+                errors={errors}
               />
               <AddJobInput
                 className={s.input}
                 label={t("addCandidate.surname")}
-                onChange={(value) => setSurname(value)}
-                value={surname}
+                name={'surname'}
+                register={register}
+                errors={errors}
               />
             </div>
             <div className={s.twoInput}>
@@ -72,13 +78,15 @@ const AddCandidate = () => {
                 label={t("addCandidate.genderTitle")}
                 value={gender}
                 onChangeSelect={(value) => setGender(value)}
-              />
+              ><div className={s.errorsWrapper}></div>
+              </Select>
               <MyInput
                 className={s.input}
-                onChange={(value) => setBirthDate(value)}
-                value={birthDate}
-                type={"date"}
                 label={t("addCandidate.birthDate")}
+                name={'birthDate'}
+                register={register}
+                errors={errors}
+                type={'date'}
               />
             </div>
           </div>
@@ -87,25 +95,32 @@ const AddCandidate = () => {
             <div className={s.twoInput}>
               <AddJobInput
                 className={s.input}
-                onChange={(value) => setEmail(value)}
-                value={email}
                 label={t("addCandidate.email")}
+                name={'email'}
+                register={register}
+                errors={errors}
+                validation={t("validation.email")}
+               pattern={/^\S+@\S+\.\S+$/}
               />
               <MyInput
                 className={s.input}
-                onChange={(value) => setMobileNumber(value)}
-                value={mobileNumber}
                 label={t("addCandidate.mobile")}
-                type={'number'}
+                name={'mobileNumber'}
+                register={register}
+                errors={errors}
+                validation={t("validation.mobileNumber")}
+                type={"number"}
+                pattern={/^380\d{9}$/}
               />
             </div>
             <div className={s.twoInput}>
               <AddJobInput
                 className={s.input}
-                onChange={(value) => setAddress(value)}
-                value={address}
                 label={t("addCandidate.location")}
-                widthInput={"809px"}
+                name={'address'}
+                register={register}
+                errors={errors}
+                widthInput={'809px'}
               />
             </div>
           </div>
@@ -114,15 +129,17 @@ const AddCandidate = () => {
             <div className={s.twoInput}>
               <AddJobInput
                 className={s.input}
-                onChange={(value) => setPosition(value)}
-                value={position}
                 label={t("addCandidate.position")}
+                name={'position'}
+                register={register}
+                errors={errors}
               />
               <MyInput
                 className={s.input}
-                onChange={(value) => setSalary(value)}
-                value={salary}
                 label={t("addCandidate.salary")}
+                name={'salary'}
+                register={register}
+                errors={errors}
                 type={"number"}
               />
             </div>
@@ -131,10 +148,10 @@ const AddCandidate = () => {
             className={s.button}
             title={state.addCandidate.loading ? <Loader width={'30px'} height={'30px'}/> : t("addCandidate.create")}
             justContent={"left"}
-            onClick={handleSumbit}
             isLoading={state.addCandidate.loading}
+            disabled={!isValid && "true"}
           />
-        </div>
+        </form>
       </div>
     </>
   );

@@ -41,7 +41,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 15px;
 
         .inputWrapper {
             display: flex;
@@ -61,7 +60,7 @@
         letter-spacing: 0.1em;
         color: #1870a3;
         width: 390px;
-        height: 62px;
+        height: 50px;
         border-radius: 5px;
         padding: 0px 15px;
         @media (max-width:768px) {
@@ -102,7 +101,7 @@
         align-items: center;
         font-family: 'Cera Pro';
         width: 390px;
-        height: 62px;
+        height: 50px;
         border-radius: 5px;
         background-color: #377DFF;
         color: white;
@@ -115,6 +114,7 @@
             height: 40px;
         }
         @media (max-width:320px) {
+            margin-top: 15px;
             max-width: 220px;
             font-size: 1.5rem;
         }
@@ -125,6 +125,9 @@
         text-align: center;
         color: red;
     }
+}
+.btnDisapled {
+    background: gray;
 }
 @media (max-width:1200px) {}
 @media (max-width:992px) {}

@@ -64,7 +64,6 @@ const AddEmployee = () => {
     dispatch(addUser({name, position, birthDate, department, surname, mobileNumber, address, email, startDate, role, gender}))
     reset();
   };
-  console.log(errors.email)
 
   return (
     <>

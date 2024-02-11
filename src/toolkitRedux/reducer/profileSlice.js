@@ -39,3 +39,7 @@ export const profileSlice = createSlice({
         }
     }
 })
+
+
+export const actions = profileSlice.actions;
+export default profileSlice.reducer;
