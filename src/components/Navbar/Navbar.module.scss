@@ -2,7 +2,7 @@
 .burgerBtn {
     margin: 15px 0px 15px 10px;
     width: 26px;
-    height: 26px;
+    height: 16px;
     display: flex;
     align-items: center;
     position: fixed;
@@ -17,16 +17,16 @@
         top: 0;
         width: 25px;
         background-color: black;
-        height: 3px;
+        height: 1px;
     }
 
     &__middleLine {
         display: inline-block;
         position: absolute;
         width: 25px;
-        top: 13px;
+        top: 8px;
         background-color: black;
-        height: 2px;
+        height: 1px;
     }
 
     &::after {
@@ -35,7 +35,7 @@
         bottom: 0;
         width: 25px;
         background-color: black;
-        height: 2px;
+        height: 1px;
     }
 }
 

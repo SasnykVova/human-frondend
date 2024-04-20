@@ -23,8 +23,8 @@ const Timeline = () => {
         {titleKey: t("vacancies.vacancyDetails.closedAt"), value: '-'},
     ]
     const hiringTeam = [
-        {titleKey: t("vacancies.vacancyDetails.createdBy"), value: `${jobDetails.createdBy.name} ${jobDetails.createdBy.surname}`},
-        {titleKey: t("vacancies.vacancyDetails.assignedTo"), value: `${jobDetails.assignedTo.name} ${jobDetails.assignedTo.surname}`},
+        {titleKey: t("vacancies.vacancyDetails.createdBy"), value: `${jobDetails?.createdBy?.name} ${jobDetails?.createdBy?.surname}`},
+        {titleKey: t("vacancies.vacancyDetails.assignedTo"), value: `${jobDetails?.assignedTo?.name} ${jobDetails?.assignedTo?.surname}`},
     ]
 
     return (
