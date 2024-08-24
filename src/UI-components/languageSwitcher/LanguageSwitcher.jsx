@@ -1,12 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import s from './LanguageSwitcher.module.scss';
 import { IoIosArrowBack } from "react-icons/io";
 import LanguageSwitcherPanel from "../languageSwitcherPanel/LanguageSwitcherPanel";
 
-const LanguageSwitcher = React.memo(({onClickSwitcher, selectedLanguageData, languagesIsOpen, languagesData, onClickPanelItem}) => {
-  console.log('LanguageSwitcher');
+const LanguageSwitcher = ({onClickSwitcher, selectedLanguageData, languagesIsOpen, languagesData, onClickPanelItem}) => {
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const memoizedOnClickSwitcher = useCallback(() => {
+      onClickSwitcher();
+    }, [onClickSwitcher]);
+
+    const memoizedOnClickPanelItem = useCallback((id, flag, name, value) => {
+      onClickPanelItem(id, flag, name, value);
+    }, [onClickPanelItem]);
+
+    const memoizedLanguagesData = useMemo(() => languagesData, [languagesData]);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,7 +35,7 @@ const LanguageSwitcher = React.memo(({onClickSwitcher, selectedLanguageData, lan
     <>
       <div
         className={s.languagesSwitcher}
-        onClick={onClickSwitcher}
+        onClick={memoizedOnClickSwitcher}
       >
         <div className={s.languageBlock}>
           {windowWidth > 766 ?
@@ -55,11 +65,11 @@ const LanguageSwitcher = React.memo(({onClickSwitcher, selectedLanguageData, lan
         />
         {languagesIsOpen ? 
         <div className={s.selectPanel}>
-          {languagesData.map((i) => (
+          {memoizedLanguagesData.map((i) => (
             <LanguageSwitcherPanel
               className={s.languageSwitcherPanel}
               onClick={() =>
-                onClickPanelItem(i.id, i.flag, i.name, i.value)
+                memoizedOnClickPanelItem(i.id, i.flag, i.name, i.value)
               }
               isOpen={languagesIsOpen}
               key={i.id}
@@ -74,6 +84,8 @@ const LanguageSwitcher = React.memo(({onClickSwitcher, selectedLanguageData, lan
       </div>
     </>
   );
-});
+};
 
-export default LanguageSwitcher;
+export default React.memo(LanguageSwitcher);
+
+

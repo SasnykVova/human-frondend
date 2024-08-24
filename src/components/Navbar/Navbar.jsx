@@ -12,7 +12,6 @@ const Navbar = () => {
   const state = useSelector((state) => state.candidatesPage);
   const dispatch = useDispatch();
   const actions = candidatesSlice.actions;
-  console.log(state.navBar.isOpen);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 

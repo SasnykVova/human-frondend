@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import $api from "../../http/index";
 
-
-
 const initialState = {
   token: null,
   userInfoData: [],
@@ -33,13 +31,15 @@ export const getLogin = createAsyncThunk(
       const userInfoStr = JSON.stringify(response.data.userInfo);
       localStorage.setItem("userInfo", userInfoStr);
       localStorage.setItem("token", response.data.token);
-      return thunkAPI.fulfillWithValue({token: response.data.token, userInfoData: response.data.userInfo});
+      return thunkAPI.fulfillWithValue({
+        token: response.data.token,
+        userInfoData: response.data.userInfo,
+      });
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
-
 
 export const authSlice = createSlice({
   name: "auth",
@@ -72,26 +72,27 @@ export const authSlice = createSlice({
       state.getLogin.success = false;
     },
     setToken(state, action) {
-      state.token = action.payload
-    }
+      state.token = action.payload;
+    },
   },
-  extraReducers: {
-    [getLogin.pending.type]: (state) => {
-      state.getLogin.loading = true;
-    },
-    [getLogin.fulfilled.type]: (state, action) => {
-      const { token, userInfoData } = action.payload;
-      state.getLogin.loading = false;
-      state.getLogin.success = true;
-      state.token = token
-      state.userInfoData = userInfoData
-      state.email = "";
-      state.password = "";
-    },
-    [getLogin.rejected.type]: (state, action) => {
-      state.getLogin.loading = false;
-      state.getLogin.error = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getLogin.pending, (state) => {
+        state.getLogin.loading = true;
+      })
+      .addCase(getLogin.fulfilled, (state, action) => {
+        const { token, userInfoData } = action.payload;
+        state.getLogin.loading = false;
+        state.getLogin.success = true;
+        state.token = token;
+        state.userInfoData = userInfoData;
+        state.email = "";
+        state.password = "";
+      })
+      .addCase(getLogin.rejected, (state, action) => {
+        state.getLogin.loading = false;
+        state.getLogin.error = action.payload;
+      });
   },
 });
 

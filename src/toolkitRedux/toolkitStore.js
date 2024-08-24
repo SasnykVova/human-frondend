@@ -1,18 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { combineReducers } from "redux"
 import authreducer from './reducer/authSlice';
-import registertoolkitReducer from "./registertoolkitReducer";
 import employessReducer from './reducer/employeesSlice';
 import jobsSlice from "./reducer/jobsSlice";
 import candidatesSlice from "./reducer/candidatesSlice";
 import profileSlice from "./reducer/profileSlice";
+import registerSlice from "./reducer/registerSlice";
 
 
 const rootReducer = combineReducers({
     jobsPage: jobsSlice,
     auth: authreducer,
     employeesPage: employessReducer,
-    registerPage: registertoolkitReducer,
+    registerPage: registerSlice,
     candidatesPage: candidatesSlice,
     profilePage: profileSlice,
 })

@@ -152,62 +152,63 @@ export const candidatesSlice = createSlice({
             state.navBar.mobileIsOpen = action.payload
         },
     },
-    extraReducers:{
-        [getSearchCandidate.pending.type]: (state) => {
+    extraReducers: (builder) => {
+        builder
+        .addCase(getSearchCandidate.pending, (state) => {
             state.getSearchCandidate.loading = true
-        },
-        [getSearchCandidate.fulfilled.type]: (state, action) => {
+        })
+        .addCase(getSearchCandidate.fulfilled, (state, action) => {
             state.getSearchCandidate.loading = false
             state.getSearchCandidate.success = true
             state.userNameData = action.payload
-        },
-        [getSearchCandidate.rejected.type]: (state, action) => {
+        })
+        .addCase(getSearchCandidate.rejected, (state, action) => {
             state.getSearchCandidate.error = action.payload
-        },
-        [getCandidates.pending.type]: (state) => {
+        })
+        .addCase(getCandidates.pending, (state) => {
             state.getCandidates.loading = true
-        },
-        [getCandidates.fulfilled.type]: (state, action) => {
+        })
+        .addCase(getCandidates.fulfilled, (state, action) => {
             state.getCandidates.loading = false
             state.getCandidates.success = true
             state.getCandidates.candidatesData = action.payload.candidates
             state.getCandidates.totalPages = action.payload.count
-        },
-        [getCandidates.rejected.type]: (state, action) => {
+        })
+        .addCase(getCandidates.rejected, (state, action) => {
             state.getCandidates.error = action.payload
-        },
-        [getOneCandidate.pending.type]: (state) => {
+        })
+        .addCase(getOneCandidate.pending, (state) => {
             state.getOne.loading = true
-        },
-        [getOneCandidate.fulfilled.type]: (state, action) => {
+        })
+        .addCase(getOneCandidate.fulfilled, (state, action) => {
             state.getOne.loading = false
             state.getOne.success = true
             state.getOne.candidateData = action.payload
-        },
-        [getOneCandidate.rejected.type]: (state, action) => {
+        })
+        .addCase(getOneCandidate.rejected, (state, action) => {
             state.getOne.error = action.payload
-        },
-        [deleteCandidate.pending.type]: (state) => {
+        })
+        .addCase(deleteCandidate.pending, (state) => {
             state.deleteCandidate.loading = true
-        },
-        [deleteCandidate.fulfilled.type]: (state) => {
+        })
+        .addCase(deleteCandidate.fulfilled, (state) => {
             state.deleteCandidate.loading = false
             state.deleteCandidate.success = true
             state.deleteCandidate.modalOpen = false
-        },
-        [deleteCandidate.rejected.type]: (state, action) => {
+        })
+        .addCase(deleteCandidate.rejected, (state, action) => {
             state.deleteCandidate.error = action.payload
-        },
-        [addCandidate.pending.type]: (state) => {
+        })
+        .addCase(addCandidate.pending, (state) => {
             state.addCandidate.loading = true
-        },
-        [addCandidate.fulfilled.type]: (state) => {
+        })
+        .addCase(addCandidate.fulfilled, (state) => {
             state.addCandidate.loading = false
             state.addCandidate.success = true
-        },
-        [addCandidate.rejected.type]: (state, action) => {
+        })
+        .addCase(addCandidate.rejected, (state, action) => {
             state.addCandidate.error = action.payload
-        },
+        })
     }
 })
 

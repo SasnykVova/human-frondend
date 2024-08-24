@@ -141,36 +141,37 @@ export const employeesSlice = createSlice({
             state.deleteUser.success = false
         },
     },
-    extraReducers: {
-        [addUser.pending.type]: (state) => {
+    extraReducers: (builder) => {
+        builder
+        .addCase(addUser.pending, (state) => {
             state.addUser.loading = true
-        },
-        [addUser.fulfilled.type]: (state) => {
+        })
+        .addCase(addUser.fulfilled, (state) => {
             state.addUser.loading = false
             state.addUser.success = true
             state.createNewEmployee = false
-        },
-        [addUser.rejected.type]: (state, action) => {
+        })
+        .addCase(addUser.rejected, (state, action) => {
             state.addUser.loading = false
             state.addUser.error = action.payload
-        },
-        [deleteUser.pending.type]: (state) => {
+        })
+        .addCase(deleteUser.pending, (state) => {
             state.deleteUser.loading = true
-        },
-        [deleteUser.fulfilled.type]: (state) => {
+        })
+        .addCase(deleteUser.fulfilled, (state) => {
             state.deleteUser.loading = false
             state.deleteUser.success = true
             state.deleteNavigate = true
             state.deleteUserSuccess = false
-        },
-        [deleteUser.rejected.type]: (state, action) => {
+        })
+        .addCase(deleteUser.rejected, (state, action) => {
             state.deleteUser.loading = false
             state.deleteUser.error = action.payload
-        },
-        [getOneUser.pending.type]: (state) => {
+        })
+        .addCase(getOneUser.pending, (state) => {
             state.getOne.loading = true
-        },
-        [getOneUser.fulfilled.type]: (state, action) => {
+        })
+        .addCase(getOneUser.fulfilled, (state, action) => {
             state.getOne.loading = false
             state.getOne.success = true
             state.employeeData.id = action.payload.id
@@ -185,11 +186,11 @@ export const employeesSlice = createSlice({
             state.employeeData.department = action.payload.department
             state.employeeData.position = action.payload.position
             state.employeeData.role = action.payload.role
-        },
-        [getOneUser.rejected.type]: (state, action) => {
+        })
+        .addCase(getOneUser.rejected, (state, action) => {
             state.deleteUserLoading = false
             state.deleteUserError = action.payload
-        }
+        })
     }
 })
 

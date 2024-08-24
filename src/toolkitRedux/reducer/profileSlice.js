@@ -25,18 +25,19 @@ export const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {},
-    extraReducers: {
-        [updatePassword.pending.type]: (state) => {
+    extraReducers: (builder) => {
+        builder
+        .addCase(updatePassword.pending, (state) => {
             state.updatePassword.loading = true
-        },
-        [updatePassword.fulfilled.type]: (state) => {
+        })
+        .addCase(updatePassword.fulfilled, (state) => {
             state.updatePassword.loading = false
             state.updatePassword.success = true
-        },
-        [updatePassword.rejected.type]: (state, action) => {
+        })
+        .addCase(updatePassword.rejected, (state, action) => {
             state.updatePassword.loading = false
             state.updatePassword.error = action.payload
-        }
+        })
     }
 })
 

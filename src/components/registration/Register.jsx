@@ -1,17 +1,17 @@
 import React from 'react';
 import s from './Register.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerSlice, setRegister } from '../../toolkitRedux/reducer/registerSlice';
 
-const Register = (props) => {
-    console.log(props)
+const Register = () => {
     
+    const state = useSelector(state => state.registerPage);
+    const dispatch = useDispatch();
+    const { setName, setSurname, setEmail, setPassword } = registerSlice.actions;
     
     const handlesubmit = (e) => {
         e.preventDefault();
-        props.getRegister(props.name, props.surname, props.email, props.password)
-        props.newNameTextAC('')
-        props.newSurnameTextAC('')
-        props.newEmailTextAC('')
-        props.newPasswordTextAC('')
+        setRegister(state.name, state.surname, state.email, state.password)
     }
 
     return (
@@ -21,19 +21,19 @@ const Register = (props) => {
                 <form onSubmit={handlesubmit} className={s.register__form}>
                     <div className={s.register__labelInput}>
                         <label className={s.register__label}>Name</label>
-                        <input onChange={(e) => {props.newNameTextAC(e.target.value)}} value={props.name} type="text" className={s.register__input} />
+                        <input onChange={(e) => {dispatch(setName(e.target.value))}} value={state.name} type="text" className={s.register__input} />
                     </div> 
                     <div className={s.register__labelInput}>
                         <label className={s.register__label}>Surname</label>
-                        <input onChange={(e) => {props.newSurnameTextAC(e.target.value)}} value={props.surname} type="text" className={s.register__input} />
+                        <input onChange={(e) => {dispatch(setSurname(e.target.value))}} value={state.surname} type="text" className={s.register__input} />
                     </div>
                     <div className={s.register__labelInput}>
                         <label className={s.register__label}>Email</label>
-                        <input onChange={(e) => {props.newEmailTextAC(e.target.value)}} value={props.email} type="text" className={s.register__input} />
+                        <input onChange={(e) => {dispatch(setEmail(e.target.value))}} value={state.email} type="text" className={s.register__input} />
                     </div>
                     <div className={s.register__labelInput}>
                         <label className={s.register__label}>Password</label>
-                        <input onChange={(e) => {props.newPasswordTextAC(e.target.value)}} value={props.password} type="password" className={s.register__input} />
+                        <input onChange={(e) => {dispatch(setPassword(e.target.value))}} value={state.password} type="password" className={s.register__input} />
                     </div>
                     <button className={s.register__btn}>Register</button>
                 </form>

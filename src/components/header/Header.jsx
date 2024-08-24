@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import s from "./Header.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authSlice } from "../../toolkitRedux/reducer/authSlice";
 import { IoIosLogOut } from "react-icons/io";
 import { ReactComponent as Logo } from "./../../assets/icon/header/logo-hrcore.svg";
@@ -11,13 +11,13 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../../UI-components/languageSwitcher/LanguageSwitcher";
 
 const Header = React.memo(() => {
-  console.log("Header");
-  const state = useSelector((state) => state.auth);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { ...actions } = authSlice.actions;
-  const token = localStorage.getItem('token');
   const { t, i18n } = useTranslation();
+
+  const [ token, setToken ] = useState(localStorage.getItem('token'));
 
   const [selectedLanguageData, setSelectedLanguageData] = useState({
     id: 1,
@@ -25,11 +25,13 @@ const Header = React.memo(() => {
     name: "English",
     value: "en",
   });
+
   const [languagesIsOpen, setLanguagesIsOpen] = useState(false);
-  const languagesData = [
+
+  const languagesData = useMemo(() => [
     { id: 1, flag: UkFlag, name: "English", value: "en" },
     { id: 2, flag: UkraineFlag, name: "Ukrainian", value: "ua" },
-  ];
+  ], []);
 
   const handleOpen = useCallback((bool) => {
     setLanguagesIsOpen(!bool);
@@ -57,6 +59,11 @@ const Header = React.memo(() => {
       navigate("/login");
     }
   }, [token, navigate]);
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, []);
+
 
   return (
     <div className={s.header}>
