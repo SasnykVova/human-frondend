@@ -16,17 +16,17 @@ function Login(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let email = state.email;
-  let password = state.password;
+  // let email = state.email;
+  // let password = state.password;
 
 
-  const handlesubmit = (e) => {
-    e.preventDefault();
-    dispatch(getLogin({ email, password }));
-    actions.loginAC("");
-    actions.passwordAC("");
-    console.log(state.email, state.password);
-  };
+  // const handlesubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(getLogin({ email, password }));
+  //   actions.loginAC("");
+  //   actions.passwordAC("");
+  //   console.log(state.email, state.password);
+  // };
 
   useEffect(() => {
     if (state.getLogin.success) {

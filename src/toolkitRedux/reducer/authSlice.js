@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import $api from "../../http/index";
 
-const userInfoString = localStorage.getItem("userInfo");
-const userInfoData = JSON.parse(userInfoString);
+
 
 const initialState = {
-  token: localStorage.getItem("token"),
-  userInfoData: userInfoData,
+  token: null,
+  userInfoData: [],
   getLogin: {
     loading: false,
     success: false,
@@ -21,7 +20,7 @@ const initialState = {
   email: "",
   password: "",
   surname: "",
-  mame: "",
+  name: "",
   id: "",
 };
 
@@ -34,7 +33,7 @@ export const getLogin = createAsyncThunk(
       const userInfoStr = JSON.stringify(response.data.userInfo);
       localStorage.setItem("userInfo", userInfoStr);
       localStorage.setItem("token", response.data.token);
-      return thunkAPI.fulfillWithValue(response.data.token);
+      return thunkAPI.fulfillWithValue({token: response.data.token, userInfoData: response.data.userInfo});
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -52,27 +51,13 @@ export const authSlice = createSlice({
     passwordAC(state, action) {
       state.password = action.payload;
     },
-    getLoginLoading(state) {
-      state.isLoading = true;
-    },
-    getLoginSuccess(state, action) {
-      state.isLoading = false;
-      state.isAuth = true;
-      state.token = action.payload;
-      state.email = "";
-      state.password = "";
-      state.error = "";
-    },
-    getLoginError(state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
     getAuth(state) {
       state.isAuth = true;
     },
     logOut(state) {
       state.token = null;
       state.getLogout.success = true;
+      state.userInfoData = [];
     },
     setSurname(state, action) {
       state.surname = action.payload;
@@ -86,15 +71,20 @@ export const authSlice = createSlice({
     setLoginSuccess(state) {
       state.getLogin.success = false;
     },
+    setToken(state, action) {
+      state.token = action.payload
+    }
   },
   extraReducers: {
     [getLogin.pending.type]: (state) => {
       state.getLogin.loading = true;
     },
     [getLogin.fulfilled.type]: (state, action) => {
+      const { token, userInfoData } = action.payload;
       state.getLogin.loading = false;
       state.getLogin.success = true;
-      state.token = action.payload;
+      state.token = token
+      state.userInfoData = userInfoData
       state.email = "";
       state.password = "";
     },

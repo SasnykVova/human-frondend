@@ -3,9 +3,9 @@ import s from './LanguageSwitcher.module.scss';
 import { IoIosArrowBack } from "react-icons/io";
 import LanguageSwitcherPanel from "../languageSwitcherPanel/LanguageSwitcherPanel";
 
-const LanguageSwitcher = (props) => {
+const LanguageSwitcher = React.memo(({onClickSwitcher, selectedLanguageData, languagesIsOpen, languagesData, onClickPanelItem}) => {
+  console.log('LanguageSwitcher');
 
-    const { onClickSwitcher, selectedLanguageData, languagesIsOpen, languagesData, onClickPanelItem} = props;
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -74,6 +74,6 @@ const LanguageSwitcher = (props) => {
       </div>
     </>
   );
-};
+});
 
 export default LanguageSwitcher;

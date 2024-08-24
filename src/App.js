@@ -3,7 +3,6 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router';
 import Jobs from './components/jobs/Jobs';
-import HeaderContainer from './components/header/HeaderContainer';
 import Login from './components/login/login';
 import RegisterContainer from './components/registration/RegisterContainer';
 import { useSelector } from 'react-redux';
@@ -18,6 +17,8 @@ import CandidateDetails from './components/candidates/candidateDetails/Candidate
 import AddCandidate from './components/candidates/addCandidate/AddCandidate';
 import AddEmployee from './components/employees/addEmployee/AddEmployee';
 import AddingVacancy from './components/jobs/addingVacancy/AddingVacancy';
+import Header from './components/header/Header';
+
 
 
 
@@ -27,12 +28,13 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate()
 
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if(state.token === null) {
+    if(token === null) {
       navigate('/login')
     }
-  },[state.token, navigate])
+  },[token, navigate])
 
   return (
     <div className='app'>
@@ -41,24 +43,24 @@ function App() {
       <div><Login className='login-block'/></div>
       :
       <div className='app-wrapper'>
-        <HeaderContainer className='header'/>
+        <Header className='header'/>
         <Navbar className='navBar'/>
         <div className='main-content'>
           <Routes>
             {/* <Route path='/' element={<HomePage/>}/>  */}
               <Route>
-                <Route path='/' element={state.token === null ? <Navigate to={'/login'}/> : <Dashboard/>}/>
-                <Route path='/profile/*' element={state.token === null ? <Navigate to={'/login'}/> : <Profile/>}/>
+                <Route path='/' element={token === null ? <Navigate to={'/login'}/> : <Dashboard/>}/>
+                <Route path='/profile/*' element={token === null ? <Navigate to={'/login'}/> : <Profile/>}/>
                 <Route path='/login/registration' element={<RegisterContainer/>} />
-                <Route path='/candidates' element={state.token === null ? <Navigate to={'/login'}/> : <Candidates/>} />
-                <Route path='/candidates/:id' element={state.token === null ? <Navigate to={'/login'}/> : <CandidateDetails/>} />
-                <Route path='/candidates/adding' element={state.token === null ? <Navigate to={'/login'}/> : <AddCandidate/>} />
-                <Route path='/jobs/*' element={state.token === null ? <Navigate to={'/login'}/> : <Jobs/>} />
-                <Route path='/jobs/all/:id/*' element={state.token === null ? <Navigate to={'/login'}/> : <VacancyDetails/>} />
-                <Route path='/jobs/adding' element={state.token === null ? <Navigate to={'/login'}/> : <AddingVacancy/>} />
-                <Route path='/employees' element={state.token === null ? <Navigate to={'/login'}/> : <Employees/>}/>
-                <Route path='/employees/:id' element={state.token === null ? <Navigate to={'/login'}/> : <EmployeeDetails/>}/>
-                <Route path='/employees/adding' element={state.token === null ? <Navigate to={'/login'}/> : <AddEmployee/>}/>
+                <Route path='/candidates' element={token === null ? <Navigate to={'/login'}/> : <Candidates/>} />
+                <Route path='/candidates/:id' element={token === null ? <Navigate to={'/login'}/> : <CandidateDetails/>} />
+                <Route path='/candidates/adding' element={token === null ? <Navigate to={'/login'}/> : <AddCandidate/>} />
+                <Route path='/jobs/*' element={token === null ? <Navigate to={'/login'}/> : <Jobs/>} />
+                <Route path='/jobs/all/:id/*' element={token === null ? <Navigate to={'/login'}/> : <VacancyDetails/>} />
+                <Route path='/jobs/adding' element={token === null ? <Navigate to={'/login'}/> : <AddingVacancy/>} />
+                <Route path='/employees' element={token === null ? <Navigate to={'/login'}/> : <Employees/>}/>
+                <Route path='/employees/:id' element={token === null ? <Navigate to={'/login'}/> : <EmployeeDetails/>}/>
+                <Route path='/employees/adding' element={token === null ? <Navigate to={'/login'}/> : <AddEmployee/>}/>
                 <Route path='*' element={<div style={{fontSize: '20px', textAlign: 'center'}}>Not found</div>}/>
               </Route>
           </Routes>
