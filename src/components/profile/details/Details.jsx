@@ -4,7 +4,7 @@ import InfoBlock from './infoBlock/InfoBlock';
 import birthDateSplit from './../../../assets/common/birthDateSplit';
 import { useTranslation } from 'react-i18next';
 
-const Details = (props) => {
+const Details = () => {
 
     const userInfoString = localStorage.getItem('userInfo')
     const userInfoData = JSON.parse(userInfoString)

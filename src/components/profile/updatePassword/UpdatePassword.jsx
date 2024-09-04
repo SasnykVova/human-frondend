@@ -9,12 +9,9 @@ import { useSelector } from "react-redux";
 import { red } from "@mui/material/colors";
 
 const UpdatePassword = () => {
+  
   const { t } = useTranslation();
   const state = useSelector(state => state.profilePage);
-
-  const [currentPass, setCurrentPass] = useState();
-  const [newPass, setNewPass] = useState();
-  const [repeatPass, setRepeatPass] = useState();
 
   const {
     register,
@@ -30,23 +27,11 @@ const UpdatePassword = () => {
     reset();
   };
 
+  const newPass = watch('newPass');
+  const repeatPass = watch('repeatPass');
+  const passwordsMatch = newPass === repeatPass;
 
-  const compare = () => {
-    const newPass = watch('newPass')
-    const repeatPass = watch('repeatPass')
-    return newPass === repeatPass ? false : true
-  }
-  const compareDirty = () => {
-    const newPassDirty = dirtyFields.newPass
-    const repeatPassDirty = dirtyFields.repeatPass
-    return newPassDirty && repeatPassDirty === true ? true : false
-  }
-  const validSamePass = compare();
-  const validDirtyPass = compareDirty();
-  useEffect(() => {
-    compare()
-  }, [watch('newPass'),watch('repeatPass')])
-  console.log(validSamePass)
+  const isBothFieldsDirty = dirtyFields.newPass && dirtyFields.repeatPass;
 
   return (
     <>
@@ -89,7 +74,11 @@ const UpdatePassword = () => {
               minLength={8}
               validationLength={t("validation.minLength")}
             />
-            <div className={s.errors} style={{color: red}}>{validSamePass && validDirtyPass && isValid === true ? 'Passwords are different' : ''}</div>
+            {isBothFieldsDirty && !passwordsMatch && (
+            <div className={s.errors} style={{ color: red }}>
+              Password are different
+            </div>
+          )}
           </div>
           <MyButton
             className={s.button}
@@ -100,10 +89,9 @@ const UpdatePassword = () => {
                 t("profile.update")
               )
             }
-            disabled={!isValid === true ? 'true' : validSamePass === false ? 'false' : 'true'}
+            disabled={!isValid || !passwordsMatch ? 'true': ''} 
             justContent={"left"}
             onClick={() => console.log('click')}
-            // isLoading={state.addCandidate.loading}
           />
         </form>
       </div>

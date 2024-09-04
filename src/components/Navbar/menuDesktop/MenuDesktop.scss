@@ -1,10 +1,10 @@
-#sidebar-menu a.active {
-    background-color: #377DFF;
-    color: white;
-}
-#sidebar-menu a.active .icon * {
-    fill: #FFFFFF;
-}
+    // #sidebar-menu a.active {
+    //     background-color: #377DFF;
+    //     color: white;
+    // }
+    // #sidebar-menu a.active .icon * {
+    //     fill: #FFFFFF;
+    // }
 #sidebar-recruitment a.active {
     background-color: #377DFF;
     color: white;
@@ -55,5 +55,15 @@
 }
 
 .menu__item {
+}
+.itemLinkActive {
+    background-color: #377DFF;
+    color: white;
+}
+#sidebar-menu .itemLinkActive .icon * {
+    fill: #FFFFFF;
+}
+#sidebar-recruitment .itemLinkActive .icon * {
+    fill: #FFFFFF;
 }
 /*=============================*/

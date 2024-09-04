@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import s from "./menu.module.scss";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./menu.scss";
 import { ReactComponent as Dashboard } from "../../../assets/icon/navbarIcon/dashboard.svg";
 import { ReactComponent as Jobs } from "../../../assets/icon/navbarIcon/job.svg";
@@ -13,12 +13,17 @@ import { useDispatch } from "react-redux";
 import { authSlice } from "../../../toolkitRedux/reducer/authSlice";
 
 const Menu = (props) => {
-  const menuActive = props.menuActive;
   const setMenuActive = props.onClick;
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const actions = authSlice.actions;
   const navigate = useNavigate();
+
+  const location = useLocation();
+    const { pathname } = location;
+    const cutPathname = (pathname) => pathname.split('/')[1]
+    const resCutPath = cutPathname(pathname);
+  
 
   const [closedMenu, setClosedMenu] = useState(false);
 
@@ -52,7 +57,7 @@ const Menu = (props) => {
               <NavLink
                 onClick={handleClosedMenu}
                 to={"/profile/details"}
-                className="menu__itemLink itemLink"
+                className={`menu__itemLink itemLink ${resCutPath === 'profile' ? 'itemLinkActive' : ''}`}
               >
                 <ImProfile className="menu__icon icon" size={24} />
                 <li className="menu__item item">{t("navBar.profile")}</li>
@@ -65,7 +70,7 @@ const Menu = (props) => {
               <NavLink
                 onClick={handleClosedMenu}
                 to={"/jobs/all"}
-                className="recruitment__itemLink itemLink"
+                className={`recruitment__itemLink itemLink ${resCutPath === 'jobs' ? 'itemLinkActive' : ''}`}
               >
                 <Jobs className="menu__icon icon" width="24" height="24" />
                 <li className="recruitment__item item">

@@ -59,24 +59,7 @@
 /*=============================*/
 .recruitment {
     &__nav {}
-
     &____list {}
-
-    // &__itemLink {
-    //     &:nth-child(1) {
-    //         background: url('../../assets/icon/navbarIcon/job.svg') 21px 12px no-repeat;
-    //     }
-    //     &:nth-child(2) {
-    //         background: url('../../assets/icon/navbarIcon/dashboardRec.svg') 21px 12px no-repeat;
-    //     }
-    //     &:nth-child(3) {
-    //         background: url('../../assets/icon/navbarIcon/MyRef.svg') 21px 12px no-repeat;
-    //     }
-    //     &:nth-child(4) {
-    //         background: url('../../assets/icon/navbarIcon/careerSite.svg') 21px 12px no-repeat;
-    //     }
-    // }
-
     &__item {}
 }
 /*=============================*/
@@ -86,4 +69,7 @@
     &____list {}
 
     &__itemLink {}
+}
+.itemLinkActive {
+    color: white;
 }

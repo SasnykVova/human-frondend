@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Profile.module.scss';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Details from './details/Details';
 import UpdatePassword from './updatePassword/UpdatePassword';
 import MainHeader from '../../UI-components/mainHeader/MainHeader';

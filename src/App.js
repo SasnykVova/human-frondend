@@ -1,41 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router';
-import Jobs from './components/jobs/Jobs';
+import { useLocation, useNavigate } from 'react-router';
 import Login from './components/login/login';
-import Employees from './components/employees/Employees';
-import EmployeeDetails from './components/employees/employee/employeeDetails/employeeDetails';
-import Dashboard from './components/homePage/Dashboard';
-import Profile from './components/profile/Profile';
-import VacancyDetails from './components/jobs/vacancyDetails/VacancyDetails';
-import Candidates from './components/candidates/Candidates';
-import CandidateDetails from './components/candidates/candidateDetails/CandidateDetails';
-import AddCandidate from './components/candidates/addCandidate/AddCandidate';
-import AddEmployee from './components/employees/addEmployee/AddEmployee';
-import AddingVacancy from './components/jobs/addingVacancy/AddingVacancy';
 import Header from './components/header/Header';
-import Register from './components/registration/Register';
+import { useSelector } from 'react-redux';
+import { renderRoutes } from './routes/renderRoutes';
 
 
+function useTokenCheck() {
+  
+  const navigate = useNavigate()
+  const [ storedToken , setStoredToken  ] = useState(localStorage.getItem('token'));
 
+  useEffect(() => {
+    const checkToken = () => {
+      const currentToken = localStorage.getItem('token');
+      setStoredToken(currentToken);
 
+      if (!currentToken) {
+        navigate('/login');
+      }
+    };
+
+    checkToken();
+
+    window.addEventListener('storage', checkToken);
+
+    return () => {
+      window.removeEventListener('storage', checkToken);
+    };
+  }, [navigate]);
+  
+  return storedToken;
+}
 
 function App() {
 
   const location = useLocation();
-  const navigate = useNavigate()
-
-  const [ token, setToken ] = useState(localStorage.getItem('token')); 
-
-  useEffect(() => {
-    if(token === null) {
-      navigate('/login')
-    }
-  },[token, navigate])
+  useTokenCheck();
+  const state = useSelector((state) => state.authreducer);
+  const token = state?.token;
+  console.log(token)
 
   return (
-    <div className='app'>
+    <div className='app'> 
       {location.pathname === '/login'
       ?
       <div><Login className='login-block'/></div>
@@ -44,24 +53,7 @@ function App() {
         <Header className='header'/>
         <Navbar className='navBar'/>
         <div className='main-content'>
-          <Routes>
-            {/* <Route path='/' element={<HomePage/>}/>  */}
-              <Route>
-                <Route path='/' element={token === null ? <Navigate to={'/login'}/> : <Dashboard/>}/>
-                <Route path='/profile/*' element={token === null ? <Navigate to={'/login'}/> : <Profile/>}/>
-                <Route path='/login/registration' element={<Register/>} />
-                <Route path='/candidates' element={token === null ? <Navigate to={'/login'}/> : <Candidates/>} />
-                <Route path='/candidates/:id' element={token === null ? <Navigate to={'/login'}/> : <CandidateDetails/>} />
-                <Route path='/candidates/adding' element={token === null ? <Navigate to={'/login'}/> : <AddCandidate/>} />
-                <Route path='/jobs/*' element={token === null ? <Navigate to={'/login'}/> : <Jobs/>} />
-                <Route path='/jobs/all/:id/*' element={token === null ? <Navigate to={'/login'}/> : <VacancyDetails/>} />
-                <Route path='/jobs/adding' element={token === null ? <Navigate to={'/login'}/> : <AddingVacancy/>} />
-                <Route path='/employees' element={token === null ? <Navigate to={'/login'}/> : <Employees/>}/>
-                <Route path='/employees/:id' element={token === null ? <Navigate to={'/login'}/> : <EmployeeDetails/>}/>
-                <Route path='/employees/adding' element={token === null ? <Navigate to={'/login'}/> : <AddEmployee/>}/>
-                <Route path='*' element={<div style={{fontSize: '20px', textAlign: 'center'}}>Not found</div>}/>
-              </Route>
-          </Routes>
+          {renderRoutes(token)}
         </div>
       </div>
 }

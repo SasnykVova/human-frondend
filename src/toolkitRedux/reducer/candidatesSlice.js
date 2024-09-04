@@ -48,7 +48,7 @@ const initialState = {
 
 export const getCandidates = createAsyncThunk(
     'candidates/getCandidates',
-    async ({limit=10, page=1, filter, onlyMine=0}, thunkAPI) => {
+    async ({limit = 10, page = 1, filter, onlyMine = 0}, thunkAPI) => {
         try {
             let response = await $api.get(`/candidates/?limit=${limit}&page=${page}&filter=${filter}&onlyMine=${onlyMine}`)
             console.log(response.data)
@@ -87,6 +87,7 @@ export const deleteCandidate = createAsyncThunk(
     async (id, thunkAPI) => {
         try {
             let response = await $api.delete(`/candidates/${id}`)
+            return thunkAPI.fulfillWithValue(response.data)
         } catch (e) {
             return thunkAPI.rejectWithValue(e)
         }

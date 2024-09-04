@@ -10,7 +10,6 @@ const $api = axios.create({
         'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
         'Access-Control-Allow-Headers': 'Content-Type, X-Auth-Token, Origin, Authorization',
     },
-        // withCredentials: true,
         baseURL: API_URL,
     })
 

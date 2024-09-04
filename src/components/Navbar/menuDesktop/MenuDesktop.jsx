@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import s from './MenuDesktop.module.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './MenuDesktop.scss';
 import { ReactComponent as Dashboard } from '../../../assets/icon/navbarIcon/dashboard.svg';
 import { ReactComponent as Jobs } from '../../../assets/icon/navbarIcon/job.svg';
@@ -9,12 +9,17 @@ import { ReactComponent as Employee } from '../../../assets/icon/navbarIcon/empl
 import { ImProfile } from "react-icons/im";
 import { useTranslation } from 'react-i18next';
 
-const MenuDesktop = (props) => {
+const MenuDesktop = () => {
 
-    const menuActive = props.menuActive;
-    const setMenuActive = props.onClick;
-    const { t, i18n } = useTranslation();
+   
+    const { t } = useTranslation();
     const [closedMenu, setClosedMenu ] = useState(false);
+
+    const location = useLocation();
+    const { pathname } = location;
+    const cutPathname = (pathname) => pathname.split('/')[1]
+    const resCutPath = cutPathname(pathname);
+
     
     const handleClosedMenu = () => {
         setClosedMenu(false)
@@ -40,9 +45,9 @@ const MenuDesktop = (props) => {
               <NavLink
                 onClick={handleClosedMenu}
                 to={"/profile/details"}
-                className="menu__itemLink itemLink"
+                className={`menu__itemLink itemLink ${resCutPath === 'profile' ? 'itemLinkActive' : ''}`}
               >
-                <ImProfile className="menu__icon icon" size={24} />
+                <ImProfile className="menu__icon icon" size={24}/>
                 <li className="menu__item item">{t("navBar.profile")}</li>
               </NavLink>
             </ul>
@@ -53,7 +58,7 @@ const MenuDesktop = (props) => {
               <NavLink
                 onClick={handleClosedMenu}
                 to={"/jobs/all"}
-                className="recruitment__itemLink itemLink"
+                className={`recruitment__itemLink itemLink ${resCutPath === 'jobs' ? 'itemLinkActive' : ''}`}
               >
                 <Jobs className="menu__icon icon" width="24" height="24" />
                 <li className="recruitment__item item">
